@@ -28,7 +28,7 @@ export default {
     <img
       v-for="index of starCount"
       class="star" alt="iulian" draggable="false"
-      :src="`/photos/${index}.png`"
+      :src="`/photos/${index}.webp`"
       :class="{ active: index === star }"
     />
     <div v-for="(layer, index) of layers" class="layer" :style="{
