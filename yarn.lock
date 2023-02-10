@@ -497,15 +497,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.16.17.tgz#c5a1a4bfe1b57f0c3e61b29883525c6da3e5c091"
   integrity sha512-y+EHuSchhL7FjHgvQL/0fnnFmO4T1bhvWANX6gcnqTjtnKWbTvUMCpGnv2+t+31d7RzyEAYAd4u2fnIhHL6N/Q==
 
-"@fontsource/itim@^4.5.10":
-  version "4.5.10"
-  resolved "https://registry.yarnpkg.com/@fontsource/itim/-/itim-4.5.10.tgz#7b61649e67cc39f913f25f6079a4ea7a9d64e45a"
-  integrity sha512-3NbmM1BButwQ5OCEt45+cyiTcd/2wcOy+SDwSI2xaszk1TV3PsOO3fKBirVDZNsK/qCpKyzNTKgENPP6TkDsgA==
-
-"@fontsource/pacifico@^4.5.9":
-  version "4.5.9"
-  resolved "https://registry.yarnpkg.com/@fontsource/pacifico/-/pacifico-4.5.9.tgz#99b2bd9d035a8e98f2ef4a1991eb128ad1e836fc"
-  integrity sha512-NwD4LaZFTiLhArrSouowlfmFZFvAoyTjwF8lOiFprmbLvxneqRvZjDWtYWmta5dExIKbfljPZeDVApLQnVQ5jA==
+"@fontsource/merienda@^4.5.12":
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/merienda/-/merienda-4.5.12.tgz#f18a502fa099d3016992213fcb235c34702c17d8"
+  integrity sha512-0xMb3Vw60roGG87Kl44ZpPfgglfjlVqisfAAZB0jINbUwlW0lrLD14S9H0akCOikWFTtgiJARHB80Q+60YdydQ==
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"

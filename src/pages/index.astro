@@ -1,7 +1,6 @@
 ---
-import '@fontsource/itim';
-import '@fontsource/pacifico';
-import StelarSystem from '../components/StelarSystem.vue';
+import '@fontsource/merienda';
+import MainSection from '../components/MainSection.vue';
 ---
 
 <html lang="ro">
@@ -13,51 +12,41 @@ import StelarSystem from '../components/StelarSystem.vue';
 		<title>Iulian Oleniuc</title>
 	</head>
 	<body>
-		<main>
-			<section>
-				<h1>Iulian Oleniuc</h1>
-				<p>student la informatică</p>
-			</section>
-			<StelarSystem client:load starCount={10} layers={[
+		<MainSection
+			client:load
+			name="Iulian Oleniuc"
+			descriptions={[
+				'student la informatică',
+				'pasionat de algoritmică',
+				'full-stack web developer',
+				'biciclist amator',
+				'perfecționist',
+				'fan al muzicii hip-hop'
+			]}
+			starCount={10}
+			layers={[
 				['1f427', '1f986'],
 				['1f3a7', '1f6b4-200d-2642-fe0f', '1f3d4'],
 				['1f4da', '1f37b', '1f34e', '270d', '1f468-200d-1f4bb']
-			]} />
-		</main>
+			]}
+		/>
 	</body>
 </html>
 
-<style>
-body {
-	padding: 0;
-  background-color: #111;
+<style is:global>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-main {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	height: 100vh;
+html {
+  line-height: 1.2;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
-	margin: 0;
-	padding: .5rem;
-	line-height: 1;
-	font-size: 5rem;
-	font-family: 'Pacifico', cursive;
-	color: transparent;
-	background-clip: text;
-	-webkit-background-clip: text;
-	background-image: linear-gradient(to right, royalblue, dodgerblue);
-}
-
-p {
-	margin: 0;
-	padding: .5rem;
-	color: #777;
-	line-height: 1;
-	font-size: 3rem;
-	font-family: 'Itim', cursive;
+:where(body, p, h1, h2, h3, h4, h5, h6) {
+  margin: 0;
 }
 </style>

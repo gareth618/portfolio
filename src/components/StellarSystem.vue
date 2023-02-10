@@ -95,8 +95,8 @@ export default {
 
 .system .planet .emoji {
   padding: 10px;
-  width: 30px;
-  height: 30px;
+  width: 55px;
+  height: 55px;
   border: 3px solid var(--color);
   border-radius: 50%;
   background-color: #111;
