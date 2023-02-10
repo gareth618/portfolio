@@ -2,6 +2,7 @@
 import '@fontsource/merienda';
 import '@fontsource/montserrat-alternates';
 import MainSection from '../components/MainSection.vue';
+import CurveDivider from '../components/CurveDivider.vue';
 ---
 
 <html lang="ro">
@@ -44,6 +45,9 @@ import MainSection from '../components/MainSection.vue';
 				]
 			]}
 		/>
+		<section class="section">
+			<CurveDivider />
+		</section>
 	</body>
 </html>
 
@@ -61,5 +65,11 @@ html {
 
 :where(body, p, h1, h2, h3, h4, h5, h6) {
   margin: 0;
+}
+
+.section {
+	position: relative;
+	height: 500px;
+	background-image: linear-gradient(45deg, dodgerblue, royalblue);
 }
 </style>
