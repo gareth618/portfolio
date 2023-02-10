@@ -49,7 +49,7 @@ section {
     height: 370px;
   }
 
-  :deep(.animation .layer:nth-of-type(3)) {
+  :deep(.animation .layer:last-of-type) {
     display: none;
   }
 }

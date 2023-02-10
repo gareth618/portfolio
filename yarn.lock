@@ -502,6 +502,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/merienda/-/merienda-4.5.12.tgz#f18a502fa099d3016992213fcb235c34702c17d8"
   integrity sha512-0xMb3Vw60roGG87Kl44ZpPfgglfjlVqisfAAZB0jINbUwlW0lrLD14S9H0akCOikWFTtgiJARHB80Q+60YdydQ==
 
+"@fontsource/montserrat-alternates@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/montserrat-alternates/-/montserrat-alternates-4.5.11.tgz#9a6f6ea56f5d30152e567389b8c142fbda55ca22"
+  integrity sha512-A9bsrj56gM3pQE8OZOj7/tu+O7j1ut1wOiPkFPQnKVU1ouDAhSh7fH+phDiINyaNiTvduZ9BfKwl66KdKgHMrg==
+
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"

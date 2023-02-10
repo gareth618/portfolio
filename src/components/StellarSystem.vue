@@ -25,12 +25,18 @@ export default {
 
 <template>
   <div class="system">
-    <img
-      v-for="index of starCount"
-      class="star" alt="iulian" draggable="false"
-      :src="`/photos/${index}.webp`"
-      :class="{ active: index === star }"
-    />
+    <div class="core">
+      <img
+        src="/photos/0.webp"
+        class="star" alt="gareth" draggable="false"
+      />
+      <img
+        v-for="index of starCount"
+        :src="`/photos/${index}.webp`"
+        class="star" alt="iulian" draggable="false"
+        :class="{ active: index === star }"
+      />
+    </div>
     <div v-for="(layer, index) of layers" class="layer" :style="{
       '--diameter': `${150 * Math.pow(1.5, index + 1)}px`,
       '--color': `#${(4 - index).toString().repeat(3)}`,
@@ -40,10 +46,11 @@ export default {
     }">
       <div class="orbit" />
       <div v-for="(planet, index) of layer" class="planet" :style="{
-        '--delay': `${360 / layer.length * index}deg`
+        '--delay': `${360 / layer.length * index}deg`,
+        '--text': `'${planet.text}'`
       }">
         <div class="emoji">
-          <img :src="`https://abs-0.twimg.com/emoji/v2/svg/${planet}.svg`" :alt="planet" draggable="false" />
+          <img :src="`https://abs-0.twimg.com/emoji/v2/svg/${planet.icon}.svg`" :alt="planet.text" draggable="false" />
         </div>
       </div>
     </div>
@@ -57,7 +64,7 @@ export default {
   height: 560px;
 }
 
-.system :where(.star, .orbit, .planet) {
+:where(.star, .orbit, .planet) {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,35 +72,40 @@ export default {
   translate: -50% -50%;
 }
 
-.system .star {
+.star {
   width: 150px;
   height: 150px;
   border: 3px solid #555;
   user-select: none;
+  opacity: 0;
   transition: opacity .25s;
 }
 
-.system .star.active {
+.star.active {
   opacity: 1;
 }
 
-.system .star:not(.active) {
-  opacity: 0;
-}
-
-.system .orbit {
+.orbit {
   width: var(--diameter);
   height: var(--diameter);
   border: 3px dashed var(--color);
   animation: orbit-rotating var(--time) linear infinite;
 }
 
-.system .planet {
+.star:first-child {
   z-index: 1;
+}
+
+.core:hover .star:first-child {
+  opacity: 1;
+}
+
+.planet {
+  z-index: 2;
   animation: planet-rotating calc(var(--time) / 5) linear infinite;
 }
 
-.system .planet .emoji {
+.emoji {
   padding: 10px;
   width: 55px;
   height: 55px;
@@ -104,11 +116,33 @@ export default {
   transition: scale .25s;
 }
 
-.system .planet .emoji:hover {
+.emoji:hover {
   scale: calc(var(--scale) * 1.25);
 }
 
-.system .planet .emoji img {
+.emoji::after {
+  content: var(--text);
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  padding: .5rem;
+  color: #eee;
+  background-color: #111;
+  border-radius: 100vh;
+  border: 3px solid var(--color);
+  translate: 0 -50%;
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: .25s;
+  transition-property: opacity, visibility;
+}
+
+.emoji:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.emoji img {
   user-select: none;
   opacity: var(--opacity);
 }

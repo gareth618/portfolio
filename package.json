@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@astrojs/vue": "^2.0.1",
 		"@fontsource/merienda": "^4.5.12",
+		"@fontsource/montserrat-alternates": "^4.5.11",
 		"astro": "^2.0.4",
 		"vue": "^3.2.30"
 	}
