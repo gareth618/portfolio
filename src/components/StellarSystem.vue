@@ -6,15 +6,15 @@ export default {
   },
   data() {
     return {
-      star: 1
+      starId: 1
     };
   },
   mounted() {
     setInterval(() => {
       while (true) {
-        const nextStar = Math.floor(Math.random() * this.starCount) + 1;
-        if (nextStar !== this.star) {
-          this.star = nextStar;
+        const nextStarId = Math.floor(Math.random() * this.starCount) + 1;
+        if (nextStarId !== this.starId) {
+          this.starId = nextStarId;
           break;
         }
       }
@@ -34,7 +34,7 @@ export default {
         v-for="index of starCount"
         :src="`/photos/${index}.webp`"
         class="star" alt="iulian" draggable="false"
-        :class="{ active: index === star }"
+        :class="{ active: index === starId }"
       />
     </div>
     <div v-for="(layer, index) of layers" class="layer" :style="{

@@ -41,7 +41,7 @@ section {
 	}
 
   :deep(.hello) {
-		text-align: center;
+    align-items: center;
 	}
 
   :deep(.animation) {
