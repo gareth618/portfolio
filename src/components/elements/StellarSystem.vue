@@ -126,8 +126,8 @@ export default {
   top: 50%;
   left: 60px;
   padding: .5rem;
-  color: #eee;
-  background-color: #111;
+  color: var(--white);
+  background-color: var(--black);
   border-radius: 100vh;
   border: 3px solid var(--color);
   translate: 0 -50%;

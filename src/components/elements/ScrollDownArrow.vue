@@ -39,11 +39,11 @@
 }
 
 .arrow:first-child :where(.left, .right) {
-  background-color: dodgerblue;
+  background-color: var(--blue-1);
 }
 
 .arrow:last-child :where(.left, .right) {
-  background-color: royalblue;
+  background-color: var(--blue-2);
 }
 
 @keyframes scrolling {

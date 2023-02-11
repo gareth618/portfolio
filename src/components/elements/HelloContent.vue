@@ -62,7 +62,7 @@ h1 {
 	color: transparent;
 	background-clip: text;
 	-webkit-background-clip: text;
-	background-image: linear-gradient(to right, royalblue, dodgerblue);
+	background-image: linear-gradient(to right, var(--blue-2), var(--blue-1));
 }
 
 p {
@@ -70,7 +70,7 @@ p {
 	width: fit-content;
 	height: 1em;
 	font-size: 2.8rem;
-	color: #777;
+	color: var(--gray);
 	border-right-width: .1em;
 	border-right-style: solid;
 	animation: blinking .75s ease-in-out infinite alternate-reverse;
@@ -78,10 +78,10 @@ p {
 
 @keyframes blinking {
 	from {
-		border-color: #6495eddd;
+		border-color: var(--cursor-1);
 	}
 	to {
-		border-color: #6495ed22;
+		border-color: var(--cursor-2);
 	}
 }
 </style>

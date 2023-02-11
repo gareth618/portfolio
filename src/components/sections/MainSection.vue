@@ -1,7 +1,7 @@
 <script>
-import HelloContent from './HelloContent.vue';
-import StellarSystem from './StellarSystem.vue';
-import ScrollDownArrow from './ScrollDownArrow.vue';
+import HelloContent from '../elements/HelloContent.vue';
+import StellarSystem from '../elements/StellarSystem.vue';
+import ScrollDownArrow from '../elements/ScrollDownArrow.vue';
 
 export default {
   props: {
@@ -32,16 +32,17 @@ section {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+  padding: 0;
   width: 100%;
-	height: min(100vh, 800px);
-	background-color: #111;
+  height: clamp(700px, 100vh, 800px);
+	background-color: var(--black);
 	overflow: hidden;
 }
 
 .scroll {
   position: absolute;
   left: 50%;
-  bottom: 5.5rem;
+  bottom: 6rem;
   translate: -50% 0;
 }
 

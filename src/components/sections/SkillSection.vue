@@ -1,5 +1,5 @@
 <script>
-import CurveDivider from './CurveDivider.vue';
+import CurveDivider from '../elements/CurveDivider.vue';
 
 export default {
   components: {
@@ -18,14 +18,14 @@ export default {
 <style scoped>
 section {
 	position: relative;
-  padding: calc(min(10vh, 15vw) + 2rem) 3rem 2rem 3rem;
-	background-image: linear-gradient(45deg, dodgerblue, royalblue);
+  padding-top: calc(1rem + 100px);
+	background-image: linear-gradient(45deg, var(--blue-1), var(--blue-2));
 }
 
 h1 {
   font-size: 5rem;
-  color: white;
+  color: var(--white);
   text-underline-offset: .1em;
-  text-decoration: underline solid #ccc .1em;
+  text-decoration: underline solid var(--white) .1em;
 }
 </style>

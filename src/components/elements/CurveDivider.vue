@@ -19,6 +19,6 @@ svg {
   position: relative;
   display: block;
   width: 105%;
-  height: min(10vh, 15vw);
+  height: 100px;
 }
 </style>

@@ -1,8 +1,8 @@
 ---
 import '@fontsource/merienda';
 import '@fontsource/montserrat-alternates';
-import MainSection from '../components/MainSection.vue';
-import SkillSection from '../components/SkillSection.vue';
+import MainSection from '../components/sections/MainSection.vue';
+import SkillSection from '../components/sections/SkillSection.vue';
 ---
 
 <html lang="ro">
@@ -50,6 +50,16 @@ import SkillSection from '../components/SkillSection.vue';
 </html>
 
 <style is:global>
+:root {
+	--white: #fff;
+	--black: #111;
+	--gray: #777;
+	--blue-1: dodgerblue;
+	--blue-2: royalblue;
+	--cursor-1: #6495ed22;
+	--cursor-2: #6495efff;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -61,7 +71,23 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-:where(body, p, h1, h2, h3, h4, h5, h6) {
+body {
+	background-color: var(--black);
+	margin: 0 max(calc((100% - 1500px) / 2), 0px);
+	box-shadow: -50px 0 200px -100px var(--blue-1), +50px 0 200px -100px var(--blue-1);
+}
+
+:where(p, h1, h2, h3, h4, h5, h6) {
   margin: 0;
+}
+
+section {
+	padding: 3rem;
+}
+
+@media (max-width: 700px) {
+	section {
+		padding: 1rem;
+	}
 }
 </style>
