@@ -1,6 +1,7 @@
 <script>
 import HelloContent from './HelloContent.vue';
 import StellarSystem from './StellarSystem.vue';
+import ScrollDownArrow from './ScrollDownArrow.vue';
 
 export default {
   props: {
@@ -11,7 +12,8 @@ export default {
   },
   components: {
     HelloContent,
-    StellarSystem
+    StellarSystem,
+    ScrollDownArrow
   }
 };
 </script>
@@ -20,11 +22,13 @@ export default {
   <section>
     <HelloContent class="hello" :name="name" :descriptions="descriptions" />
     <StellarSystem class="animation" :starCount="starCount" :layers="layers" />
+    <ScrollDownArrow class="scroll" />
   </section>
 </template>
 
 <style scoped>
 section {
+  position: relative;
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
@@ -34,22 +38,33 @@ section {
 	overflow: hidden;
 }
 
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: 5.5rem;
+  translate: -50% 0;
+}
+
 @media (max-width: 1150px) {
   section {
     flex-direction: column;
     justify-content: space-evenly;
 	}
 
-  :deep(.hello) {
+  .hello {
     align-items: center;
 	}
 
-  :deep(.animation) {
+  .animation {
     width: 370px;
     height: 370px;
   }
 
-  :deep(.animation .layer:last-of-type) {
+  .animation:deep(.layer:last-of-type) {
+    display: none;
+  }
+
+  .scroll {
     display: none;
   }
 }
@@ -61,11 +76,11 @@ section {
     gap: 3rem;
   }
 
-  :deep(.hello h1) {
+  .hello:deep(h1) {
     font-size: 3rem;
   }
 
-  :deep(.hello p) {
+  .hello:deep(p) {
     font-size: 1.8rem;
   }
 }
