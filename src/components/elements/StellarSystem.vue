@@ -1,4 +1,6 @@
 <script>
+import Twemoji from './Twemoji.vue';
+
 export default {
   props: {
     starCount: Number,
@@ -8,6 +10,9 @@ export default {
     return {
       starId: 1
     };
+  },
+  components: {
+    Twemoji
   },
   mounted() {
     setInterval(() => {
@@ -50,7 +55,7 @@ export default {
         '--text': `'${planet.text}'`
       }">
         <div class="emoji">
-          <img :src="`https://abs-0.twimg.com/emoji/v2/svg/${planet.icon}.svg`" :alt="planet.text" draggable="false" />
+          <Twemoji :emoji="planet.icon" />
         </div>
       </div>
     </div>
@@ -143,6 +148,8 @@ export default {
 }
 
 .emoji img {
+  width: initial;
+  height: initial;
   user-select: none;
   opacity: var(--opacity);
 }

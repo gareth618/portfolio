@@ -1,19 +1,20 @@
 {
-	"name": "portfolio",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/vue": "^2.0.1",
-		"@fontsource/merienda": "^4.5.12",
-		"@fontsource/montserrat-alternates": "^4.5.11",
-		"astro": "^2.0.4",
-		"vue": "^3.2.30"
-	}
+  "name": "portfolio",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^2.0.1",
+    "@fontsource/merienda": "^4.5.12",
+    "@fontsource/montserrat-alternates": "^4.5.11",
+    "astro": "^2.0.4",
+    "twemoji": "^14.0.2",
+    "vue": "^3.2.30"
+  }
 }

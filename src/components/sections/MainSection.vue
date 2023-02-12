@@ -4,12 +4,6 @@ import StellarSystem from '../elements/StellarSystem.vue';
 import ScrollDownArrow from '../elements/ScrollDownArrow.vue';
 
 export default {
-  props: {
-    name: String,
-    descriptions: Array,
-    starCount: Number,
-    layers: Array
-  },
   components: {
     HelloContent,
     StellarSystem,
@@ -20,8 +14,40 @@ export default {
 
 <template>
   <section>
-    <HelloContent class="hello" :name="name" :descriptions="descriptions" />
-    <StellarSystem class="animation" :starCount="starCount" :layers="layers" />
+    <HelloContent
+      class="hello"
+      name="Iulian Oleniuc"
+      :descriptions="[
+        'student la informatică',
+        'pasionat de algoritmică',
+        'full-stack web developer',
+        'biciclist amator',
+        'din păcate perfecționist',
+        'fan al culturii hip-hop'
+      ]"
+    />
+    <StellarSystem
+      class="animation"
+      :starCount="10"
+      :layers="[
+        [
+          { icon: '🐧', text: 'linux' },
+          { icon: '🦆', text: 'rațe' }
+        ],
+        [
+          { icon: '🎧', text: 'rap' },
+          { icon: '🚴‍♂️', text: 'ciclism' },
+          { icon: '🏔️', text: 'călătorii' }
+        ],
+        [
+          { icon: '📚', text: 'citit' },
+          { icon: '🍻', text: 'ieșiri' },
+          { icon: '🍎', text: 'apple' },
+          { icon: '✍️', text: 'scris' },
+          { icon: '👨‍💻', text: 'codat' }
+        ]
+      ]"
+    />
     <ScrollDownArrow class="scroll" />
   </section>
 </template>
@@ -29,14 +55,14 @@ export default {
 <style scoped>
 section {
   position: relative;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   padding: 0;
   width: 100%;
   height: clamp(700px, 100vh, 800px);
-	background-color: var(--black);
-	overflow: hidden;
+  background-color: var(--black);
+  overflow: hidden;
 }
 
 .scroll {
@@ -50,11 +76,11 @@ section {
   section {
     flex-direction: column;
     justify-content: space-evenly;
-	}
+  }
 
   .hello {
     align-items: center;
-	}
+  }
 
   .animation {
     width: 370px;

@@ -6,58 +6,41 @@ import SkillSection from '../components/sections/SkillSection.vue';
 ---
 
 <html lang="ro">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Iulian Oleniuc</title>
-	</head>
-	<body>
-		<MainSection
-			client:load
-			name="Iulian Oleniuc"
-			descriptions={[
-				'student la informatică',
-				'pasionat de algoritmică',
-				'full-stack web developer',
-				'biciclist amator',
-				'din păcate perfecționist',
-				'fan al culturii hip-hop'
-			]}
-			starCount={10}
-			layers={[
-				[
-					{ icon: '1f427', text: 'linux' },
-					{ icon: '1f986', text: 'rațe' }
-				],
-				[
-					{ icon: '1f3a7', text: 'rap' },
-					{ icon: '1f6b4-200d-2642-fe0f', text: 'ciclism' },
-					{ icon: '1f3d4', text: 'călătorii' }
-				],
-				[
-					{ icon: '1f4da', text: 'citit' },
-					{ icon: '1f37b', text: 'ieșiri' },
-					{ icon: '1f34e', text: 'apple' },
-					{ icon: '270d', text: 'scris' },
-					{ icon: '1f468-200d-1f4bb', text: 'codat' }
-				]
-			]}
-		/>
-		<SkillSection />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Iulian Oleniuc</title>
+  </head>
+  <body>
+    <MainSection client:load />
+    <SkillSection client:visible technologies={[
+      'React',
+      'Vue',
+      'Gatsby',
+      'Nuxt',
+      'Astro',
+      'FireBase',
+      'Node',
+      'Git',
+      'PostgreSQL',
+      'HTML',
+      'CSS',
+      'JavaScript'
+    ]} />
+  </body>
 </html>
 
 <style is:global>
 :root {
-	--white: #fff;
-	--black: #111;
-	--gray: #777;
-	--blue-1: dodgerblue;
-	--blue-2: royalblue;
-	--cursor-1: #6495ed22;
-	--cursor-2: #6495efff;
+  --white: #fff;
+  --black: #111;
+  --gray: #777;
+  --blue-1: dodgerblue;
+  --blue-2: royalblue;
+  --cursor-1: #6495ed22;
+  --cursor-2: #6495efff;
 }
 
 * {
@@ -65,16 +48,16 @@ import SkillSection from '../components/sections/SkillSection.vue';
 }
 
 html {
-	line-height: 1.2;
-	font-family: 'Montserrat Alternates', sans-serif;
+  line-height: 1.2;
+  font-family: 'Montserrat Alternates', sans-serif;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-	background-color: var(--black);
-	margin: 0 max(calc((100% - 1500px) / 2), 0px);
-	box-shadow: -50px 0 200px -100px var(--blue-1), +50px 0 200px -100px var(--blue-1);
+  background-color: var(--black);
+  margin: 0 max(calc((100% - 1500px) / 2), 0px);
+  box-shadow: -50px 0 200px -100px var(--blue-1), +50px 0 200px -100px var(--blue-1);
 }
 
 :where(p, h1, h2, h3, h4, h5, h6) {
@@ -82,12 +65,12 @@ body {
 }
 
 section {
-	padding: 3rem;
+  padding: 3rem;
 }
 
 @media (max-width: 700px) {
-	section {
-		padding: 1rem;
-	}
+  section {
+    padding: 1rem;
+  }
 }
 </style>
