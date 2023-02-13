@@ -18,12 +18,14 @@ export default {
     <CurveDivider />
     <h2><Twemoji emoji="💡" /> Tehnologii</h2>
     <div class="technologies">
-      <article v-for="technology of technologies">
-        <div class="back">
-          <h3>{{ technology }}</h3>
-        </div>
-        <div class="front">
-          <img :src="`/technologies/${technology.toLowerCase()}.svg`" :alt="technology" />
+      <article v-for="technology of technologies" :style="{ '--color': technology.color }">
+        <div class="card">
+          <div class="back">
+            <h3>{{ technology.name }}</h3>
+          </div>
+          <div class="front">
+            <img :src="`/technologies/${technology.name.toLowerCase()}.svg`" :alt="technology.name" />
+          </div>
         </div>
       </article>
     </div>
@@ -53,8 +55,19 @@ h2 {
 }
 
 article {
+  aspect-ratio: 1.618;
+}
+
+.card {
   position: relative;
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform ease-out .5s;
+}
+
+article:hover .card {
+  transform: rotateY(180deg);
 }
 
 :where(.front, .back) {
@@ -68,12 +81,18 @@ article {
   justify-content: center;
   align-items: center;
   background-color: var(--black);
-  border: 3px solid var(--white);
+  border: 3px solid var(--color);
+  backface-visibility: hidden;
+  user-select: none;
+}
+
+.back {
+  transform: rotateY(180deg);
 }
 
 h3 {
   font-size: 1.25rem;
-  color: var(--white);
+  color: var(--color);
 }
 
 article img {

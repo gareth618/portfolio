@@ -16,18 +16,18 @@ import SkillSection from '../components/sections/SkillSection.vue';
   <body>
     <MainSection client:load />
     <SkillSection client:visible technologies={[
-      'React',
-      'Vue',
-      'Gatsby',
-      'Nuxt',
-      'Astro',
-      'FireBase',
-      'Node',
-      'Git',
-      'PostgreSQL',
-      'HTML',
-      'CSS',
-      'JavaScript'
+      { name: 'HTML', color: '#ef652a' },
+      { name: 'CSS', color: '#2965f1' },
+      { name: 'JavaScript', color: '#f7df1e' },
+      { name: 'Git', color: '#f03c2e' },
+      { name: 'Node', color: '#83cd29' },
+      { name: 'PostgreSQL', color: '#336791' },
+      { name: 'React', color: '#61dafb' },
+      { name: 'Vue', color: '#41b883' },
+      { name: 'Gatsby', color: '#663399' },
+      { name: 'Nuxt', color: '#00dc82' },
+      { name: 'Astro', color: '#ff5d01' },
+      { name: 'FireBase', color: '#ffca28' }
     ]} />
   </body>
 </html>
@@ -36,7 +36,7 @@ import SkillSection from '../components/sections/SkillSection.vue';
 :root {
   --white: #fff;
   --black: #111;
-  --gray: #777;
+  --gray: #888;
   --blue-1: dodgerblue;
   --blue-2: royalblue;
   --cursor-1: #6495ed22;
