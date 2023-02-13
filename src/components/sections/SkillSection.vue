@@ -1,6 +1,6 @@
 <script>
 import Twemoji from '../elements/Twemoji.vue';
-import CurveDivider from '../elements/CurveDivider.vue';
+import ShapeDivider from '../elements/ShapeDivider.vue';
 
 export default {
   props: {
@@ -8,15 +8,15 @@ export default {
   },
   components: {
     Twemoji,
-    CurveDivider
+    ShapeDivider
   }
 };
 </script>
 
 <template>
   <section>
-    <CurveDivider />
-    <h2><Twemoji emoji="💡" /> Tehnologii</h2>
+    <ShapeDivider />
+    <h2><Twemoji emoji="💡" /> Tehnologii Folosite</h2>
     <div class="technologies">
       <article v-for="technology of technologies" :style="{ '--color': technology.color }">
         <div class="card">
@@ -34,18 +34,7 @@ export default {
 
 <style scoped>
 section {
-  position: relative;
-  padding-top: calc(1rem + 100px);
   background-image: linear-gradient(45deg, var(--blue-1), var(--blue-2));
-}
-
-h2 {
-  margin-bottom: 2rem;
-  padding-bottom: .1em;
-  width: fit-content;
-  font-size: 3rem;
-  color: var(--white);
-  border-bottom: .1em dashed var(--white);
 }
 
 .technologies {

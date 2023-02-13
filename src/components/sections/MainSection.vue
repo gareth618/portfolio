@@ -102,13 +102,5 @@ section {
     height: fit-content;
     gap: 3rem;
   }
-
-  .hello:deep(h1) {
-    font-size: 3rem;
-  }
-
-  .hello:deep(p) {
-    font-size: 1.8rem;
-  }
 }
 </style>

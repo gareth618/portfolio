@@ -3,6 +3,7 @@ import '@fontsource/merienda';
 import '@fontsource/montserrat-alternates';
 import MainSection from '../components/sections/MainSection.vue';
 import SkillSection from '../components/sections/SkillSection.vue';
+import KnowledgeSection from '../components/sections/KnowledgeSection.vue';
 ---
 
 <html lang="ro">
@@ -28,6 +29,16 @@ import SkillSection from '../components/sections/SkillSection.vue';
       { name: 'Nuxt', color: '#00dc82' },
       { name: 'Astro', color: '#ff5d01' },
       { name: 'FireBase', color: '#ffca28' }
+    ]} />
+    <KnowledgeSection client:visible concepts={[
+      'algoritmică',
+      'structuri de date',
+      'machine learning',
+      'rețele neuronale',
+      'criptografie',
+      'multithreading',
+      'baze de date',
+      'OOP'
     ]} />
   </body>
 </html>
@@ -64,13 +75,31 @@ body {
   margin: 0;
 }
 
+h2 {
+  margin-bottom: 2rem;
+  padding-bottom: .1em;
+  width: fit-content;
+  color: var(--white);
+  font-size: clamp(1.75rem, 7vw, 4rem);
+  border-bottom: .1em dashed var(--white);
+}
+
 section {
   padding: 3rem;
+}
+
+section:has(.divider) {
+  position: relative;
+  padding-top: calc(min(15vh, 100px) + 3rem);
 }
 
 @media (max-width: 700px) {
   section {
     padding: 1rem;
+  }
+
+  section:has(.divider) {
+    padding-top: calc(min(15vh, 100px) + 1rem);
   }
 }
 </style>

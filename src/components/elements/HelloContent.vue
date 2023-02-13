@@ -58,7 +58,7 @@ main {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: clamp(3rem, 10vw, 5rem);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -69,7 +69,7 @@ p {
   padding-right: .2rem;
   width: fit-content;
   height: 1em;
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
   color: var(--gray);
   border-right-width: .1em;
   border-right-style: solid;
