@@ -1,6 +1,7 @@
 ---
 import '@fontsource/merienda';
 import '@fontsource/montserrat-alternates';
+
 import MainSection from '../components/sections/MainSection.vue';
 import SkillSection from '../components/sections/SkillSection.vue';
 import KnowledgeSection from '../components/sections/KnowledgeSection.vue';
@@ -31,14 +32,14 @@ import KnowledgeSection from '../components/sections/KnowledgeSection.vue';
       { name: 'FireBase', color: '#ffca28' }
     ]} />
     <KnowledgeSection client:visible concepts={[
-      'algoritmică',
-      'structuri de date',
-      'machine learning',
-      'rețele neuronale',
-      'criptografie',
-      'multithreading',
-      'baze de date',
-      'OOP'
+      { icon: '🤌', name: 'algoritmică' },
+      { icon: '🫰', name: 'structuri de date' },
+      { icon: '👌', name: 'machine learning' },
+      { icon: '🤙', name: 'rețele neuronale' },
+      { icon: '✌️', name: 'criptografie' },
+      { icon: '☝️', name: 'baze de date' },
+      { icon: '🤞', name: 'multithreading' },
+      { icon: '👉', name: 'programare orientată-obiect' }
     ]} />
   </body>
 </html>
@@ -52,6 +53,8 @@ import KnowledgeSection from '../components/sections/KnowledgeSection.vue';
   --blue-2: royalblue;
   --cursor-1: #6495ed22;
   --cursor-2: #6495efff;
+  --green-1: limegreen;
+  --green-2: forestgreen;
 }
 
 * {
@@ -71,12 +74,16 @@ body {
   box-shadow: -50px 0 200px -100px var(--blue-1), +50px 0 200px -100px var(--blue-1);
 }
 
-:where(p, h1, h2, h3, h4, h5, h6) {
+:where(p, h1, h2, h3, h4, h5, h6, ul) {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+}
+
 h2 {
-  margin-bottom: 2rem;
+  margin-bottom: max(.75em, 1.5rem);
   padding-bottom: .1em;
   width: fit-content;
   color: var(--white);

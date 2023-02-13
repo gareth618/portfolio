@@ -55,6 +55,7 @@ main {
   gap: 1rem;
   line-height: 1;
   font-family: 'Merienda', cursive;
+  user-select: none;
 }
 
 h1 {

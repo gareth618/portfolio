@@ -24,7 +24,7 @@ export default {
             <h3>{{ technology.name }}</h3>
           </div>
           <div class="front">
-            <img :src="`/technologies/${technology.name.toLowerCase()}.svg`" :alt="technology.name" />
+            <img :src="`/technologies/${technology.name.toLowerCase()}.svg`" :alt="technology.name.toLowerCase()" />
           </div>
         </div>
       </article>
