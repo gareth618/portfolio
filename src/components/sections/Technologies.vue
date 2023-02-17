@@ -17,7 +17,7 @@ export default {
   <section>
     <ShapeDivider />
     <h2><Twemoji emoji="💡" /> Tehnologii Folosite</h2>
-    <div class="technologies">
+    <main>
       <article v-for="technology of technologies" :style="{ '--color': technology.color }">
         <div class="card">
           <div class="back">
@@ -28,7 +28,7 @@ export default {
           </div>
         </div>
       </article>
-    </div>
+    </main>
   </section>
 </template>
 
@@ -37,7 +37,7 @@ section {
   background-image: linear-gradient(45deg, var(--blue-1), var(--blue-2));
 }
 
-.technologies {
+main {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));

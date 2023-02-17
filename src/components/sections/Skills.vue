@@ -3,7 +3,7 @@ import Twemoji from '../elements/Twemoji.vue';
 
 export default {
   props: {
-    concepts: Array
+    skills: Array
   },
   data() {
     return {
@@ -30,9 +30,9 @@ export default {
 
 <template>
   <section>
-    <h2><Twemoji emoji="🧠" /> Cunoștințe</h2>
+    <h2><Twemoji emoji="🧠" /> Skilluri</h2>
     <ul>
-      <li v-for="concept of concepts"><Twemoji :emoji="concept.icon" /> {{ concept.name }}</li>
+      <li v-for="skill of skills"><Twemoji :emoji="skill.icon" /> {{ skill.name }}</li>
     </ul>
     <svg viewBox="-15 -5 40 40">
       <line v-for="edge of edges" :x1="nodes[edge[0]][0]" :y1="nodes[edge[0]][1]" :x2="nodes[edge[1]][0]" :y2="nodes[edge[1]][1]" />

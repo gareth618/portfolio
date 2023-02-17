@@ -28,7 +28,7 @@ export default {
     />
     <StellarSystem
       class="animation"
-      :starCount="10"
+      :starCount="11"
       :layers="[
         [
           { icon: '🐧', text: 'linux' },
