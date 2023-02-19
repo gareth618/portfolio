@@ -44,14 +44,14 @@ export default {
 <style scoped>
 section {
   position: relative;
-  background-image: linear-gradient(-45deg, var(--green-1), var(--green-2));
+  background-image: linear-gradient(-45deg, limegreen, forestgreen);
 }
 
 ul {
   display: flex;
   flex-direction: column;
   gap: .25em;
-  font-size: clamp(1rem, 4vw, 2rem);
+  font-size: var(--font-size);
   color: var(--white);
   list-style: none;
 }

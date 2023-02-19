@@ -72,7 +72,7 @@ section {
   translate: -50% 0;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   section {
     flex-direction: column;
     justify-content: space-evenly;
