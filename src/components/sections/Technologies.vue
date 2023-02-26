@@ -18,7 +18,7 @@ export default {
     <ShapeDivider />
     <h2><Twemoji emoji="💡" /> Tehnologii Folosite</h2>
     <main>
-      <article v-for="technology of technologies" :style="{ '--color': technology.color }">
+      <article v-for="technology of technologies" :style="{ '--color': technology.color }" tabindex="0">
         <div class="card">
           <div class="back">
             <h3>{{ technology.name }}</h3>
@@ -55,7 +55,7 @@ article {
   transition: transform ease-out .5s;
 }
 
-article:hover .card {
+article:where(:hover, :focus-visible) .card {
   transform: rotateY(180deg);
 }
 

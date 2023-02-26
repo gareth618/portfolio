@@ -18,7 +18,7 @@ export default {
     <h2><Twemoji emoji="🦉" /> Limbaje Cunoscute</h2>
     <main>
       <div class="languages">
-        <article v-for="language of languages">
+        <article v-for="language of languages" tabindex="0">
           <img :src="`/languages/${language.name.toLowerCase()}.svg`" :alt="language.name" draggable="false" />
           <div class="content">
             <h3>{{ language.name }}</h3>
@@ -68,11 +68,11 @@ article {
   transition: transform .25s;
 }
 
-article:hover {
+article:where(:hover, :focus-visible) {
   transform: translateY(-1rem);
 }
 
-article:hover ~ article {
+article:where(:hover, :focus-visible) ~ article {
   transform: translateX(calc(min(400px, 80vw) - 50px - 2rem));
 }
 
