@@ -1,0 +1,43 @@
+- title: InfoGenius
+  icon: 💡
+  abstract: Competitive programming blog
+  github: https://github.com/gareth618/infogenius
+  link: https://infogenius.ro/
+- title: PasteMd
+  icon: 📝
+  abstract: PasteBin but for Markdown
+  github: https://github.com/gareth618/pastemd
+  link: https://pastemd.netlify.app/
+- title: Iași Red Cross
+  icon: 🏥
+  abstract: Website for the Iași Red Cross
+  link: https://crucearosieiasi.ro/
+- title: ABE-PY
+  icon: 🐍
+  abstract: KP-ABE heuristics in Python
+  github: https://github.com/gareth618/abepy
+- title: Music App
+  icon: 🎵
+  abstract: Cloud Computing project
+  github: https://github.com/gareth618/music-app
+- title: Graph Bot
+  icon: 🤖
+  abstract: Advanced Programming project
+  github: https://github.com/gareth618/graph-bot
+- title: M-PIC
+  icon: 🌄
+  abstract: Web Technologies project
+  github: https://github.com/gareth618/m-pic
+- title: Numerical Analysis
+  icon: 📈
+  abstract: Numerical Analysis project
+  github: https://github.com/gareth618/numerical-analysis
+  link: https://calcul-numeric.netlify.app/
+- title: SVG Renderer
+  icon: 🎨
+  abstract: Python Programming project
+  github: https://github.com/gareth618/svg-renderer
+- title: Reads Profiler
+  icon: 📖
+  abstract: Computer Networks project
+  github: https://github.com/gareth618/reads-profiler

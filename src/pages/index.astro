@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import MovingArrows from '../components/home/MovingArrows.vue'
+import PhotoAtom from '../components/home/PhotoAtom.vue'
+import IconHeader from '../components/general/IconHeader.astro'
+import MarkdownContainer from '../components/general/MarkdownContainer.astro'
+
+const { Content } = await (await getCollection('pages')).find(page => page.id === 'home.mdx')!.render()
+---
+
+<BaseLayout title="Home">
+  <div class="flex items-center justify-between gap-14 max-lg:flex-col max-lg:gap-10">
+    <div class="flex max-w-screen-md flex-col items-center justify-center gap-14 max-lg:max-w-full max-lg:gap-10">
+      <h1 class="max-sm-text-3xl w-full text-6xl font-bold max-sm:text-5xl">Hi There!</h1>
+      <p class="w-full text-xl max-sm:text-lg">My name is Iulian, and I’m passionate about mathematics and science. I’m actively involved in the Romanian competitive programming community, and I occasionally enjoy creating websites.</p>
+      <MovingArrows />
+    </div>
+    <PhotoAtom client:visible />
+  </div>
+  <div class="mt-20 max-w-4xl [&_img:not(.emoji):only-child]:max-h-72">
+    <MarkdownContainer>
+      <Content components={{ h2: IconHeader }} />
+    </MarkdownContainer>
+  </div>
+</BaseLayout>

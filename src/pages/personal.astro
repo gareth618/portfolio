@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import CardSection from '../components/general/CardSection.astro'
+import BookCard from '../components/cards/BookCard.astro'
+import SeriesCard from '../components/cards/SeriesCard.astro'
+import type { Book, Series } from '../content/config'
+
+const books = (await getCollection('categories')).find(category => category.id === 'books')!.data as Book[]
+const series = (await getCollection('categories')).find(category => category.id === 'series')!.data as Series[]
+---
+
+<BaseLayout title="Personal">
+  <h1 class="mb-12 text-5xl font-bold">Personal</h1>
+  <CardSection title="📚 Books I’ve Read">
+    <section class="my-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      {books.map(book => <BookCard title={book.title} author={book.author} rating={book.rating} />)}
+    </section>
+  </CardSection>
+  <CardSection title="🍿 TV Series I’ve Watched">
+    <section class="my-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      {series.map(serial => <SeriesCard title={serial.title} seasons={serial.seasons} rating={serial.rating} />)}
+    </section>
+  </CardSection>
+</BaseLayout>
