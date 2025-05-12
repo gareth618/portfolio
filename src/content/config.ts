@@ -17,21 +17,9 @@ const paper = z.object({
   link: z.string(),
 })
 
-const book = z.object({
-  title: z.string(),
-  author: z.string(),
-  rating: z.enum(['💩', '⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️', '❤️❤️❤️❤️❤️']),
-})
-
-const series = z.object({
-  title: z.string(),
-  seasons: z.array(z.tuple([z.number(), z.number()])),
-  rating: z.enum(['💩', '⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️', '❤️❤️❤️❤️❤️']),
-})
-
 const categories = defineCollection({
   type: 'data',
-  schema: z.union([z.array(technology), z.array(project), z.array(paper), z.array(book), z.array(series)]),
+  schema: z.union([z.array(technology), z.array(project), z.array(paper)]),
 })
 
 const pages = defineCollection({
@@ -57,5 +45,3 @@ export const collections = {
 export type Technology = z.infer<typeof technology>
 export type Project = z.infer<typeof project>
 export type Paper = z.infer<typeof paper>
-export type Book = z.infer<typeof book>
-export type Series = z.infer<typeof series>

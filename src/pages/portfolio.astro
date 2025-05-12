@@ -12,8 +12,8 @@ const projects = (await getCollection('categories')).find(category => category.i
 const papers = (await getCollection('categories')).find(category => category.id === 'papers')!.data as Paper[]
 ---
 
-<BaseLayout title="Professional">
-  <h1 class="mb-12 text-5xl font-bold">Professional</h1>
+<BaseLayout title="Portfolio">
+  <h1 class="mb-12 text-5xl font-bold">Portfolio</h1>
   <CardSection title="💻 Technologies I Know">
     <section class="my-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
       {technologies.map(technology => <TechnologyCard name={technology} />)}

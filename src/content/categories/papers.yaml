@@ -7,15 +7,21 @@
 - title: Bachelor’s Thesis — Paper
   icon: 📰
   abstract:
-    Based on the paper “Boolean Circuit Optimizations for KP-ABE.”
+    Based on the paper “Boolean Circuit Optimizations for ABE.”
     With no space restrictions, this version provides a more detailed explanation of the problem and approach, compared to the original paper.
   link: /paper/thesis-paper.pdf
 - title: Bachelor’s Thesis — Presentation
   icon: 🎪
   abstract:
-    Based on the paper “Boolean Circuit Optimizations for KP-ABE.”
+    Based on the paper “Boolean Circuit Optimizations for ABE.”
     These slides were used in the presentation of my Bachelor’s thesis and, in my opinion, offer a great summary of the topic.
   link: /paper/thesis-slides.pdf
+- title: LSSS Limitations Over Boolean Circuits
+  icon: 🪫
+  abstract:
+    A paper co-authored with Alex Ioniță, published in CSJM, 33(1), 2025.
+    It offers a gentle introduction into the realm of monotone span programs, linear secret sharing schemes, and attribute-based encryption.
+  link: https://www.math.md/publications/csjm/issues/v33-n1/14108/
 - title: Introduction to Neural Networks
   icon: 🧠
   abstract:
@@ -28,12 +34,6 @@
     My contribution to the project for the Information Security class.
     It covers topics such as blockchain, proof-of-work, bitcoin mining, cryptographic hash functions, and Merkle trees.
   link: /paper/blockchain.pdf
-- title: Minesweeper in JavaScript Tutorial
-  icon: 🧨
-  abstract:
-    A detailed tutorial on how to implement the Minesweeper game in Vanilla JavaScript.
-    I wrote it for a friend who was learning frontend development.
-  link: https://pastemd.netlify.app/pastes/nMaYWgU0Bdoo4d1RFuoy
 - title: Introduction to Combinatorics
   icon: 🎯
   abstract:
@@ -49,6 +49,11 @@
   abstract:
     A lesson for InfoGym, introducing the Aho–Corasick algorithm for string matching, starting from the concept of a deterministic finite automaton and from the KMP algorithm.
   link: /paper/aho-corasick.pdf
+- title: Subsequence Problems
+  icon: 📚
+  abstract:
+    A lesson for InfoGym, reviewing basic techniques for subsequence problems, such as prefix sums, difference arrays, “sliding window,” and “two pointers.”
+  link: https://pastemd.netlify.app/pastes/HuenJYstyefmcAD7Yog4
 - title: Working With Strings in C++
   icon: 🫧
   abstract:
@@ -59,8 +64,9 @@
   abstract:
     A lesson for InfoGym, providing an introduction to object-oriented programming and the STL library, with a focus on the std::vector class.
   link: /paper/stl.pdf
-- title: Subsequence Problems
-  icon: 📚
+- title: Minesweeper in JavaScript Tutorial
+  icon: 🧨
   abstract:
-    A lesson for InfoGym, reviewing basic techniques for subsequence problems, such as prefix sums, difference arrays, “sliding window,” and “two pointers.”
-  link: https://pastemd.netlify.app/pastes/HuenJYstyefmcAD7Yog4
+    A detailed tutorial on how to implement the Minesweeper game in Vanilla JavaScript.
+    I wrote it for a friend who was learning frontend development.
+  link: https://pastemd.netlify.app/pastes/nMaYWgU0Bdoo4d1RFuoy
