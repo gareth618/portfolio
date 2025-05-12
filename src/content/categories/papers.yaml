@@ -2,7 +2,7 @@
   icon: 🚜
   abstract:
     A paper co-authored with Alex Ioniță and Denis Banu, published at the KES 2023 conference.
-    It introduces four heuristics for optimizing Boolean circuits in Key-Policy Attribute-Based Encryption schemes.
+    It introduces four heuristics for optimizing Boolean circuits in key-policy attribute-based encryption schemes.
   link: https://arxiv.org/abs/2305.13008
 - title: Bachelor’s Thesis — Paper
   icon: 📰
