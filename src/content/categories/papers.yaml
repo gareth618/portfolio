@@ -1,3 +1,19 @@
+- title: LSSS Limitations Over Boolean Circuits
+  icon: 🪫
+  abstract:
+    A paper co-authored with Alex Ioniță, published in CSJM, 33(1), 2025.
+    It offers a gentle introduction into the realm of monotone span programs, linear secret sharing schemes, and attribute-based encryption.
+  link: https://www.math.md/publications/csjm/issues/v33-n1/14108/
+- title: Master’s Thesis — Paper
+  icon: 🥂
+  abstract:
+    “A Hybrid KP-ABE Scheme for Universal Circuits.” Building on top of the Hu–Gao and Goyal et al. schemes, we propose the pairing-based KP-ABE scheme with, we argue, the highest degree of generalization.
+  link: /paper/msc-paper.pdf
+- title: Master’s Thesis — Presentation
+  icon: 🥁
+  abstract:
+    “A Hybrid KP-ABE Scheme for Universal Circuits.” These slides were used in the presentation of my Master’s thesis and, in my opinion, offer a great summary of the topic.
+  link: /paper/msc-slides.pdf
 - title: Boolean Circuit Optimizations for ABE
   icon: 🚜
   abstract:
@@ -9,19 +25,13 @@
   abstract:
     Based on the paper “Boolean Circuit Optimizations for ABE.”
     With no space restrictions, this version provides a more detailed explanation of the problem and approach, compared to the original paper.
-  link: /paper/thesis-paper.pdf
+  link: /paper/bsc-paper.pdf
 - title: Bachelor’s Thesis — Presentation
   icon: 🎪
   abstract:
     Based on the paper “Boolean Circuit Optimizations for ABE.”
     These slides were used in the presentation of my Bachelor’s thesis and, in my opinion, offer a great summary of the topic.
-  link: /paper/thesis-slides.pdf
-- title: LSSS Limitations Over Boolean Circuits
-  icon: 🪫
-  abstract:
-    A paper co-authored with Alex Ioniță, published in CSJM, 33(1), 2025.
-    It offers a gentle introduction into the realm of monotone span programs, linear secret sharing schemes, and attribute-based encryption.
-  link: https://www.math.md/publications/csjm/issues/v33-n1/14108/
+  link: /paper/bsc-slides.pdf
 - title: Introduction to Neural Networks
   icon: 🧠
   abstract:
