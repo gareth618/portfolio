@@ -1,12 +1,19 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 import vue from '@astrojs/vue'
-import { textPlugin, linkPlugin } from './remark/link.mjs'
+
+import { linkPlugin } from './remark/link.mjs'
+import { textPlugin } from './remark/text.mjs'
 
 export default defineConfig({
-  integrations: [mdx(), tailwind(), vue()],
-  markdown: {
-    remarkPlugins: [textPlugin, linkPlugin],
+  integrations: [mdx(), vue()],
+  vite: {
+    plugins: [tailwindcss()],
   },
+  markdown: {
+    remarkPlugins: [linkPlugin, textPlugin],
+  },
+  site: 'https://ioleniuc.ro/',
+  trailingSlash: 'always',
 })

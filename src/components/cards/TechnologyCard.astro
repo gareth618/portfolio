@@ -1,5 +1,5 @@
 ---
-import { slugify } from '../../utils/slugs'
+import { slugify } from '~utils/slugs'
 
 type Props = {
   name: string
@@ -10,7 +10,11 @@ const { name } = Astro.props
 
 <article class="flex flex-col items-center gap-4 bg-gray-800 p-4">
   <div class="flex aspect-square h-16 items-center justify-center">
-    <img class="max-h-full max-w-full" src={`/technology/${slugify(name)}.svg`} alt={name} />
+    <img
+      class="max-h-full max-w-full"
+      src={`/technology/${slugify(name)}.svg`}
+      alt={name}
+    />
   </div>
   <div class="font-bold">{name}</div>
 </article>

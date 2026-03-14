@@ -1,15 +1,23 @@
 ---
 import { getCollection } from 'astro:content'
-import { slugify } from '../../utils/slugs'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import PostCard from '../../components/cards/PostCard.astro'
+
+import PostCard from '~components/cards/PostCard.astro'
+
+import BaseLayout from '~layouts/BaseLayout.astro'
+
+import { slugify } from '~utils/slugs'
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
   const tags = [...new Set(posts.map(post => post.data.tags).flat())]
   return tags.map(tag => ({
     params: { slug: slugify(tag) },
-    props: { tag, slugs: posts.filter(post => post.data.tags.includes(tag)).map(post => post.slug) },
+    props: {
+      tag,
+      slugs: posts
+        .filter(post => post.data.tags.includes(tag))
+        .map(post => post.slug),
+    },
   }))
 }
 
@@ -34,6 +42,15 @@ const posts = (await getCollection('posts'))
 <BaseLayout title={tag}>
   <h1 class="mb-12 text-5xl font-bold">{tag}</h1>
   <section class="my-8 flex flex-col gap-4">
-    {posts.map(post => <PostCard slug={post.slug} title={post.title} icon={post.icon} date={post.date} />)}
+    {
+      posts.map(post => (
+        <PostCard
+          slug={post.slug}
+          title={post.title}
+          icon={post.icon}
+          date={post.date}
+        />
+      ))
+    }
   </section>
 </BaseLayout>

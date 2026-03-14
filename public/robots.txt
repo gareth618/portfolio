@@ -1,8 +1,6 @@
 User-agent: *
-Disallow: /tag/
-Disallow: /book/
 Disallow: /logo/
 Disallow: /photo/
-Disallow: /series/
+Disallow: /tag/
 Disallow: /technology/
 Disallow: /cv.pdf
