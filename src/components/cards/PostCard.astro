@@ -1,5 +1,5 @@
 ---
-import Twemoji from '~components/general/Twemoji.vue'
+import EmojiIcon from '~components/general/EmojiIcon.vue'
 
 import { dateToString } from '~utils/dates'
 
@@ -16,7 +16,7 @@ const { slug, title, icon, date } = Astro.props
 <a class="flex bg-gray-800 hover:bg-gray-700" href={`/post/${slug}/`}>
   <div class="flex items-center bg-gray-700 p-3">
     <div class="aspect-square h-12" transition:name={`${slug}-icon`}>
-      <Twemoji emoji={icon} />
+      <EmojiIcon emoji={icon} />
     </div>
   </div>
   <div

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Twemoji from '~components/general/Twemoji.vue'
+import EmojiIcon from '~components/general/EmojiIcon.vue'
 
 const layers = [
   ['🦆', '🐧'],
@@ -63,7 +63,7 @@ const layers = [
             "
           >
             <div style="opacity: var(--io-opacity)">
-              <Twemoji :emoji="electron" />
+              <EmojiIcon :emoji="electron" />
             </div>
           </div>
         </div>

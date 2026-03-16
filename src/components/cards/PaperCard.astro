@@ -1,5 +1,5 @@
 ---
-import Twemoji from '~components/general/Twemoji.vue'
+import EmojiIcon from '~components/general/EmojiIcon.vue'
 
 type Props = {
   title: string
@@ -17,14 +17,14 @@ const { title, icon, abstract, link } = Astro.props
     <div>{abstract}</div>
     <div class="flex items-center justify-between">
       <div class="aspect-square h-8">
-        <Twemoji emoji={icon} />
+        <EmojiIcon emoji={icon} />
       </div>
       <a
         class="w-fit bg-gray-800 px-2 py-1 font-semibold hover:bg-gray-700"
         href={link}
         target="_blank"
       >
-        {link[0] === '/' ? 'PDF' : 'WEB'}
+        {link[0] === '/' ? 'PDF' : 'Web'}
       </a>
     </div>
   </div>

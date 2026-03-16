@@ -39,7 +39,6 @@ export default defineConfig([
     rules: {
       'prefer-const': 'error',
       'sort-imports': ['error', { allowSeparatedGroups: true }],
-      'vue/multi-word-component-names': 'off',
     },
   },
 ])

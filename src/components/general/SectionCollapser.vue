@@ -18,7 +18,7 @@ function toggleSection() {
 
 <template>
   <button
-    class="relative flex aspect-square h-10 items-center justify-center bg-gray-800 hover:bg-gray-700"
+    class="relative flex aspect-square h-10 items-center justify-center bg-gray-800 hover:cursor-pointer hover:bg-gray-700"
     @click="toggleSection"
   >
     <div

@@ -1,7 +1,7 @@
 ---
 import { slugify } from '~utils/slugs'
 
-import Twemoji from './Twemoji.vue'
+import EmojiIcon from './EmojiIcon.vue'
 
 let text = await Astro.slots.render('default')
 text = text.replace(
@@ -23,7 +23,7 @@ const anchor = slugify(title)
     class="aspect-square h-8 transition-transform hover:-rotate-45"
     href={`#${anchor}`}
   >
-    <Twemoji emoji={icon} />
+    <EmojiIcon emoji={icon} />
   </a>
   <div>{title}</div>
 </h2>
