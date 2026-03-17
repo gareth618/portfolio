@@ -13,6 +13,9 @@ export default defineConfig({
   },
   markdown: {
     remarkPlugins: [linkPlugin, textPlugin],
+    shikiConfig: {
+      theme: 'one-dark-pro',
+    },
   },
   site: 'https://ioleniuc.ro/',
   trailingSlash: 'always',
