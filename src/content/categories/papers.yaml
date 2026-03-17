@@ -54,11 +54,11 @@
 - title: Subsequence Problems
   icon: 📚
   abstract: A lesson for InfoGym, reviewing basic techniques for subsequence problems, such as prefix sums, difference arrays, “sliding window,” and “two pointers.”
-  link: https://pastemd.netlify.app/pastes/HuenJYstyefmcAD7Yog4
+  link: https://pastemd.vercel.app/pastes/HuenJYstyefmcAD7Yog4
 - title: Working With Strings in C++
   icon: 🫧
   abstract: A lesson for InfoGym, covering the char type, the concept of pointers, C-style strings, and the std::string class in C++.
-  link: https://pastemd.netlify.app/pastes/darte7fNLN6iI3ZDeNx8
+  link: https://pastemd.vercel.app/pastes/darte7fNLN6iI3ZDeNx8
 - title: Introduction to STL
   icon: 🚀
   abstract: A lesson for InfoGym, providing an introduction to object-oriented programming and the STL library, with a focus on the std::vector class.
@@ -68,4 +68,4 @@
   abstract:
     A detailed tutorial on how to implement the Minesweeper game in Vanilla JavaScript.
     I wrote it for a friend who was learning frontend development.
-  link: https://pastemd.netlify.app/pastes/nMaYWgU0Bdoo4d1RFuoy
+  link: https://pastemd.vercel.app/pastes/nMaYWgU0Bdoo4d1RFuoy

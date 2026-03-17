@@ -7,7 +7,7 @@
   icon: 📝
   abstract: PasteBin but for Markdown
   github: https://github.com/gareth618/pastemd
-  link: https://pastemd.netlify.app/
+  link: https://pastemd.vercel.app/
 - title: Iași Red Cross
   icon: 🏥
   abstract: Website for the Iași Red Cross
