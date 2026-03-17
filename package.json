@@ -7,6 +7,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "vitest",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint 'src/**/*.{astro,vue,js,ts}'",
@@ -45,6 +46,7 @@
     "stylelint-config-recess-order": "^7.6.1",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-tailwindcss": "^1.0.1",
-    "typescript-eslint": "^8.57.0"
+    "typescript-eslint": "^8.57.0",
+    "vitest": "^4.1.0"
   }
 }
