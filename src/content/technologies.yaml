@@ -1,30 +1,45 @@
 - id: cpp
+  order: 1
   name: C++
 - id: java
+  order: 2
   name: Java
 - id: python
+  order: 3
   name: Python
 - id: firebase
+  order: 4
   name: FireBase
 - id: supabase
+  order: 5
   name: SupaBase
 - id: html
+  order: 6
   name: HTML
 - id: css
+  order: 7
   name: CSS
 - id: javascript
+  order: 8
   name: JavaScript
 - id: typescript
+  order: 9
   name: TypeScript
 - id: tailwind
+  order: 10
   name: Tailwind
 - id: react
+  order: 11
   name: React
 - id: vue
+  order: 12
   name: Vue
 - id: gatsby
+  order: 13
   name: Gatsby
 - id: nuxt
+  order: 14
   name: Nuxt
 - id: astro
+  order: 15
   name: Astro

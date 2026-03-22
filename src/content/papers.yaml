@@ -1,4 +1,5 @@
 - id: csjm
+  order: 1
   title: LSSS Limitations Over Boolean Circuits
   icon: 🪫
   abstract:
@@ -6,16 +7,19 @@
     It offers a gentle introduction into the realm of monotone span programs, linear secret sharing schemes, and attribute-based encryption.
   link: https://www.math.md/publications/csjm/issues/v33-n1/14108/
 - id: msc-paper
+  order: 2
   title: Master’s Thesis — Paper
   icon: 🥂
   abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.”
     Building on top of the Hu–Gao and Goyal et al. schemes, we propose the pairing-based KP-ABE scheme with, we argue, the highest degree of generalization.
 - id: msc-slides
+  order: 3
   title: Master’s Thesis — Presentation
   icon: 🥁
   abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.”
     These slides were used in the presentation of my Master’s thesis and, in my opinion, offer a great summary of the topic.
 - id: kes
+  order: 4
   title: Boolean Circuit Optimizations for ABE
   icon: 🚜
   abstract:
@@ -23,53 +27,64 @@
     It introduces four heuristics for optimizing Boolean circuits in key-policy attribute-based encryption schemes.
   link: https://arxiv.org/abs/2305.13008
 - id: bsc-paper
+  order: 5
   title: Bachelor’s Thesis — Paper
   icon: 📰
   abstract: Based on the paper “Boolean Circuit Optimizations for ABE.”
     With no space restrictions, this version provides a more detailed explanation of the problem and approach, compared to the original paper.
 - id: bsc-slides
+  order: 6
   title: Bachelor’s Thesis — Presentation
   icon: 🎪
   abstract: Based on the paper “Boolean Circuit Optimizations for ABE.”
     These slides were used in the presentation of my Bachelor’s thesis and, in my opinion, offer a great summary of the topic.
 - id: neural-networks
+  order: 7
   title: Introduction to Neural Networks
   icon: 🧠
   abstract:
     A paper detailing fundamental concepts like the backpropagation algorithm.
     I was dissatisfied with the Neural Networks class, so I created my own paper to better explain the material.
 - id: blockchain
+  order: 8
   title: Introduction to Blockchain
   icon: ⛓️
   abstract: My contribution to the project for the Information Security class.
     It covers topics such as blockchain, proof-of-work, bitcoin mining, cryptographic hash functions, and Merkle trees.
 - id: combinatorics
+  order: 9
   title: Introduction to Combinatorics
   icon: 🎯
   abstract: A lesson for InfoGym, covering fundamental concepts such as “stars and bars,” Stirling numbers of the second kind, and the principle of inclusion and exclusion.
 - id: trie-kmp
+  order: 10
   title: Trie. The KMP Algorithm
   icon: 🌴
   abstract: A lesson for InfoGym, introducing the trie data structure and the Knuth–Morris–Pratt algorithm for string matching.
 - id: aho-corasick
+  order: 11
   title: The Aho–Corasick Algorithm
   icon: 🏝️
   abstract: A lesson for InfoGym, introducing the Aho–Corasick algorithm for string matching, starting from the concept of a deterministic finite automaton and from the KMP algorithm.
 - id: subsequences
+  order: 12
   title: Subsequence Problems
   icon: 📚
   abstract: A lesson for InfoGym, reviewing basic techniques for subsequence problems, such as prefix sums, difference arrays, “sliding window,” and “two pointers.”
   link: https://pastemd.vercel.app/pastes/HuenJYstyefmcAD7Yog4
 - id: strings-cpp
+  order: 13
   title: Working With Strings in C++
   icon: 🫧
   abstract: A lesson for InfoGym, covering the char type, the concept of pointers, C-style strings, and the std::string class in C++.
   link: https://pastemd.vercel.app/pastes/darte7fNLN6iI3ZDeNx8
 - id: stl
+  order: 14
   title: Introduction to STL
   icon: 🚀
   abstract: A lesson for InfoGym, providing an introduction to object-oriented programming and the STL library, with a focus on the std::vector class.
 - id: minesweeper-js
+  order: 15
   title: Minesweeper in JavaScript Tutorial
   icon: 🧨
   abstract:
