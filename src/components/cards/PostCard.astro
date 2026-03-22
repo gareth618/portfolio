@@ -8,25 +8,31 @@ type Props = {
   title: string
   icon: string
   date: Date
+  abstract: string
 }
 
-const { slug, title, icon, date } = Astro.props
+const { slug, title, icon, date, abstract } = Astro.props
 ---
 
-<a class="flex bg-gray-800 hover:bg-gray-700" href={`/post/${slug}/`}>
-  <div class="flex items-center bg-gray-700 p-3">
+<a class="bg-gray-800 hover:bg-gray-700" href={`/post/${slug}/`}>
+  <div class="flex items-center gap-4 p-4">
     <div class="aspect-square h-12" transition:name={`${slug}-icon`}>
       <EmojiIcon emoji={icon} />
     </div>
-  </div>
-  <div
-    class="flex w-full justify-between gap-2 p-4 max-md:flex-col md:items-center"
-  >
-    <div class="text-xl font-bold" transition:name={`${slug}-title`}>
-      {title}
+    <div class="flex flex-col gap-1">
+      <div
+        class="text-2xl leading-6 font-bold"
+        transition:name={`${slug}-title`}
+      >
+        {title}
+      </div>
+      <div
+        class="leading-5 font-semibold text-gray-400"
+        transition:name={`${slug}-date`}
+      >
+        {dateToString(date)}
+      </div>
     </div>
-    <div class="font-semibold text-gray-400" transition:name={`${slug}-date`}>
-      {dateToString(date)}
-    </div>
   </div>
+  <div class="bg-gray-700 p-4">{abstract}</div>
 </a>

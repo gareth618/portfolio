@@ -21,7 +21,11 @@ const { post } = Astro.props
 const { Content } = await render(post)
 ---
 
-<BaseLayout title={post.data.title}>
+<BaseLayout
+  title={post.data.title}
+  tags={post.data.tags}
+  abstract={post.data.abstract}
+>
   <div class="max-w-3xl">
     <section
       class="mb-12 flex gap-8 max-md:flex-col max-md:gap-4 md:items-center"
@@ -51,7 +55,7 @@ const { Content } = await render(post)
             class="bg-gray-800 px-2 py-1 hover:bg-gray-700"
             href={`/tag/${slugify(tag)}/`}
           >
-            {tag}
+            {tag.replaceAll(' ', '-')}
           </a>
         ))
       }

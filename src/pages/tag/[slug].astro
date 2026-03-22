@@ -30,15 +30,18 @@ const posts = (await getCollection('posts'))
     icon: post.data.icon,
     date: post.data.date,
     tags: post.data.tags,
+    abstract: post.data.abstract,
   }))
   .filter(post => slugs.includes(post.slug))
   .toSorted((post1, post2) => post2.date.getTime() - post1.date.getTime())
 ---
 
-<BaseLayout title={`Tag #${tag}`}>
+<BaseLayout title={`Tag #${tag.replaceAll(' ', '-')}`}>
   <h1 class="mb-12 text-5xl font-bold">
     Tag
-    <span class="wrap-anywhere text-green-300 before:content-['#']">{tag}</span>
+    <span class="wrap-anywhere text-green-300 before:content-['#']"
+      >{tag.replaceAll(' ', '-')}</span
+    >
   </h1>
   <section class="my-8 flex flex-col gap-4">
     {
@@ -48,6 +51,7 @@ const posts = (await getCollection('posts'))
           title={post.title}
           icon={post.icon}
           date={post.date}
+          abstract={post.abstract}
         />
       ))
     }

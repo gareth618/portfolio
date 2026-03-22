@@ -55,6 +55,7 @@ const posts = defineCollection({
     date: z.date(),
     category: reference('categories'),
     tags: z.array(z.string()),
+    abstract: z.string(),
   }),
 })
 
