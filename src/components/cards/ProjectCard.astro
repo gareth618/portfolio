@@ -1,31 +1,29 @@
 ---
+import type { CollectionEntry } from 'astro:content'
+
 import EmojiIcon from '~components/general/EmojiIcon.vue'
 
 type Props = {
-  title: string
-  icon: string
-  abstract: string
-  github?: string
-  link?: string
+  data: CollectionEntry<'projects'>
 }
 
-const { title, icon, abstract, github, link } = Astro.props
+const { data } = Astro.props
 ---
 
 <article class="flex flex-col">
-  <div class="bg-gray-800 p-4 font-bold">{title}</div>
+  <div class="bg-gray-800 p-4 font-bold">{data.data.title}</div>
   <div class="flex grow flex-col justify-between gap-4 bg-gray-700 p-4">
-    <div>{abstract}</div>
+    <div>{data.data.abstract}</div>
     <div class="flex items-center justify-between">
       <div class="aspect-square h-8">
-        <EmojiIcon emoji={icon} />
+        <EmojiIcon emoji={data.data.icon} />
       </div>
       <div class="flex gap-2 self-end">
         {
-          github && (
+          data.data.github && (
             <a
               class="w-fit bg-gray-800 px-2 py-1 font-semibold hover:bg-gray-700"
-              href={github}
+              href={data.data.github}
               target="_blank"
             >
               Code
@@ -33,10 +31,10 @@ const { title, icon, abstract, github, link } = Astro.props
           )
         }
         {
-          link && (
+          data.data.link && (
             <a
               class="w-fit bg-gray-800 px-2 py-1 font-semibold hover:bg-gray-700"
-              href={link}
+              href={data.data.link}
               target="_blank"
             >
               Web

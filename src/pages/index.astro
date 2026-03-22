@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getEntry, render } from 'astro:content'
 
 import IconHeader from '~components/general/IconHeader.astro'
 import MarkdownContainer from '~components/general/MarkdownContainer.astro'
@@ -8,9 +8,7 @@ import PhotoAtom from '~components/home/PhotoAtom.vue'
 
 import BaseLayout from '~layouts/BaseLayout.astro'
 
-const { Content } = await (await getCollection('pages'))
-  .find(page => page.id === 'home.mdx')!
-  .render()
+const { Content } = await render(await getEntry('pages', 'home')!)
 ---
 
 <BaseLayout title="Home">
