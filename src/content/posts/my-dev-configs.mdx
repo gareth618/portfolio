@@ -11,13 +11,15 @@ tags:
   - eslint
 ---
 
+import CodeBlock from '../../components/general/CodeBlock.astro'
+
 After finally managing to create the perfect all-encompassing ESLint config for my blog repository, I've decided to write a little post in order to share all the relevant dev configs I use on a daily basis.
 
 But first, how does my dev setup look like?
 
 ## 🪐 General Setup
 
-I work on a MacBook Air 2020 --- I think it was the first model ever released with an Apple M1 chip. I am more than happy to switch to a GNU/Linux system if I have to, but I would miss the macOS key bindings. However, I still dread Windows, which I have to use daily on my actual job. To be honest, it has copied enough things from macOS lately that it became somewhat decent to use, and it actually beats macOS when it comes to most aspects of window management. But PowerShell is a hell.
+I work on a MacBook Air 2020 --- I think it was the first model ever released with an Apple M1 chip. I am more than happy to switch to a GNU/Linux system if I have to, but I would miss the macOS key bindings. However, I'm still hostile towards Windows, which I have to use daily on my actual job. To be honest, it has copied enough things from macOS lately that it became somewhat decent to use, and it actually beats macOS when it comes to most aspects of window management. But PowerShell is a hell.
 
 I use the native Terminal app, which starting with macOS Tahoe added true-color support. Previously, I had to use iTerm2 for Neovim's syntax highlighting.
 
@@ -29,7 +31,7 @@ Favourite tech stack? [Astro](https://astro.build/) + [Vue](https://vuejs.org/) 
 
 ## 🐟 Fish
 
-`~/.config/fish/config.fish`
+<CodeBlock title="~/.config/fish/config.fish">
 
 ```sh
 function runcpp --argument filename
@@ -37,11 +39,13 @@ function runcpp --argument filename
 end
 ```
 
+</CodeBlock>
+
 Here we have a Fish function compiling, running, and cleaning after the given C++ file.
 
 ## 🔮 Neovim
 
-`~/.config/nvim/init.lua`
+<CodeBlock title="~/.config/nvim/init.lua">
 
 ```lua
 require('plugins')
@@ -57,9 +61,11 @@ vim.opt.autoindent = true
 vim.opt.linebreak = true
 ```
 
+</CodeBlock>
+
 Basic indentation setup.
 
-`~/.config/nvim/lua/plugins.lua`
+<CodeBlock title="~/.config/nvim/lua/plugins.lua">
 
 ```lua
 return require('packer').startup(function(use)
@@ -92,6 +98,8 @@ return require('packer').startup(function(use)
 end)
 ```
 
+</CodeBlock>
+
 Basic syntax highlighting for the languages I really need. Just as inside VSCode, I use the Atom One Dark theme. I've also defined a Vim command which opens a new terminal tab below the currently opened C++ file and runs the above Fish function on it. Ain't that cool?
 
 ![C++ file in Neovim](../../assets/posts/neovim.png)
@@ -100,7 +108,7 @@ Basic syntax highlighting for the languages I really need. Just as inside VSCode
 
 ## 🪟 VSCode
 
-`keybindings.json`
+<CodeBlock title="keybindings.json">
 
 ```json
 [
@@ -132,9 +140,11 @@ Basic syntax highlighting for the languages I really need. Just as inside VSCode
 ]
 ```
 
+</CodeBlock>
+
 I need key bindings to kill a terminal, focus on it, close it, hide it, make it full-screen, and split it.
 
-`settings.json`
+<CodeBlock title="settings.json">
 
 ```json
 {
@@ -150,7 +160,6 @@ I need key bindings to kill a terminal, focus on it, close it, hide it, make it 
 
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit",
-    "source.fixAll.eslint": "explicit",
     "source.fixAll.prettier": "explicit"
   },
   "editor.cursorStyle": "block",
@@ -191,11 +200,13 @@ I need key bindings to kill a terminal, focus on it, close it, hide it, make it 
 }
 ```
 
-Except for HTML, which is full of indentations, the prose-oriented files should word-wrap. On file save, all available StyleLint, ESLint, and Prettier fixes should be applied, in this particular order. I want the editor to remain as minimalistic as possible, so I don't need minimaps, sticky-scrolls, and so on in my life. From GitLens I only make use of CodeLens --- that is, mainly, displaying onto each line of code who authored it.
+</CodeBlock>
+
+Except for HTML, which is full of indentations, the prose-oriented files should word-wrap. On file save, all available StyleLint and Prettier fixes, respectively, should be applied. I want the editor to remain as minimalistic as possible, so I don't need minimaps, sticky-scrolls, and so on in my life. From GitLens I only make use of CodeLens --- that is, mainly, displaying onto each line of code who authored it.
 
 ## 🖌️ StyleLint
 
-`.stylelintrc.cjs`
+<CodeBlock title=".stylelintrc.cjs">
 
 ```cjs
 module.exports = {
@@ -214,11 +225,13 @@ module.exports = {
 }
 ```
 
+</CodeBlock>
+
 Support for Astro, Vue, Tailwind, and HTML. Its main goal, for me, is reordering the CSS properties in a deterministic, consistent way --- apparently, called "Recess."
 
 ## ✨ Prettier
 
-`.prettierrc`
+<CodeBlock title=".prettierrc">
 
 ```json
 {
@@ -243,11 +256,13 @@ Support for Astro, Vue, Tailwind, and HTML. Its main goal, for me, is reordering
 }
 ```
 
+</CodeBlock>
+
 Support for Astro, Vue, and Tailwind. No parentheses for one-argument arrow functions. No trailing semicolons. Trailing commas everywhere. Single quotes.
 
 ## ☘️ ESLint
 
-`eslint.config.js`
+<CodeBlock title="eslint.config.js">
 
 ```mjs
 import astro from 'eslint-plugin-astro'
@@ -295,6 +310,8 @@ export default defineConfig([
   },
 ])
 ```
+
+</CodeBlock>
 
 Support for Astro, Vue, and TypeScript.
 
