@@ -18,6 +18,7 @@ const posts = (await getCollection('posts'))
     date: post.data.date,
     categoryId: post.data.category.id,
     tags: post.data.tags,
+    abstract: post.data.abstract,
   }))
   .toSorted((post1, post2) => post2.date.getTime() - post1.date.getTime())
 ---
@@ -27,7 +28,7 @@ const posts = (await getCollection('posts'))
   {
     categories.map(category => (
       <CardSection title={`${category.data.icon} ${category.data.name}`}>
-        <section class="my-8 flex flex-col gap-4">
+        <section class="my-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {posts
             .filter(post => post.categoryId === category.id)
             .map(post => (
@@ -36,6 +37,7 @@ const posts = (await getCollection('posts'))
                 title={post.title}
                 icon={post.icon}
                 date={post.date}
+                abstract={post.abstract}
               />
             ))}
         </section>
