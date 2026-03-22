@@ -1,69 +1,76 @@
-- title: LSSS Limitations Over Boolean Circuits
+- id: csjm
+  title: LSSS Limitations Over Boolean Circuits
   icon: 🪫
   abstract:
     A paper co-authored with Alex Ioniță, published in CSJM, 33(1), 2025.
     It offers a gentle introduction into the realm of monotone span programs, linear secret sharing schemes, and attribute-based encryption.
   link: https://www.math.md/publications/csjm/issues/v33-n1/14108/
-- title: Master’s Thesis — Paper
+- id: msc-paper
+  title: Master’s Thesis — Paper
   icon: 🥂
-  abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.” Building on top of the Hu–Gao and Goyal et al. schemes, we propose the pairing-based KP-ABE scheme with, we argue, the highest degree of generalization.
-  link: /paper/msc-paper.pdf
-- title: Master’s Thesis — Presentation
+  abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.”
+    Building on top of the Hu–Gao and Goyal et al. schemes, we propose the pairing-based KP-ABE scheme with, we argue, the highest degree of generalization.
+- id: msc-slides
+  title: Master’s Thesis — Presentation
   icon: 🥁
-  abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.” These slides were used in the presentation of my Master’s thesis and, in my opinion, offer a great summary of the topic.
-  link: /paper/msc-slides.pdf
-- title: Boolean Circuit Optimizations for ABE
+  abstract: “A Hybrid KP-ABE Scheme for Universal Circuits.”
+    These slides were used in the presentation of my Master’s thesis and, in my opinion, offer a great summary of the topic.
+- id: kes
+  title: Boolean Circuit Optimizations for ABE
   icon: 🚜
   abstract:
     A paper co-authored with Alex Ioniță and Denis Banu, published at the KES 2023 conference.
     It introduces four heuristics for optimizing Boolean circuits in key-policy attribute-based encryption schemes.
   link: https://arxiv.org/abs/2305.13008
-- title: Bachelor’s Thesis — Paper
+- id: bsc-paper
+  title: Bachelor’s Thesis — Paper
   icon: 📰
   abstract: Based on the paper “Boolean Circuit Optimizations for ABE.”
     With no space restrictions, this version provides a more detailed explanation of the problem and approach, compared to the original paper.
-  link: /paper/bsc-paper.pdf
-- title: Bachelor’s Thesis — Presentation
+- id: bsc-slides
+  title: Bachelor’s Thesis — Presentation
   icon: 🎪
   abstract: Based on the paper “Boolean Circuit Optimizations for ABE.”
     These slides were used in the presentation of my Bachelor’s thesis and, in my opinion, offer a great summary of the topic.
-  link: /paper/bsc-slides.pdf
-- title: Introduction to Neural Networks
+- id: neural-networks
+  title: Introduction to Neural Networks
   icon: 🧠
   abstract:
     A paper detailing fundamental concepts like the backpropagation algorithm.
     I was dissatisfied with the Neural Networks class, so I created my own paper to better explain the material.
-  link: /paper/neural-networks.pdf
-- title: Introduction to Blockchain
+- id: blockchain
+  title: Introduction to Blockchain
   icon: ⛓️
   abstract: My contribution to the project for the Information Security class.
     It covers topics such as blockchain, proof-of-work, bitcoin mining, cryptographic hash functions, and Merkle trees.
-  link: /paper/blockchain.pdf
-- title: Introduction to Combinatorics
+- id: combinatorics
+  title: Introduction to Combinatorics
   icon: 🎯
   abstract: A lesson for InfoGym, covering fundamental concepts such as “stars and bars,” Stirling numbers of the second kind, and the principle of inclusion and exclusion.
-  link: /paper/combinatorics.pdf
-- title: Trie. The KMP Algorithm
+- id: trie-kmp
+  title: Trie. The KMP Algorithm
   icon: 🌴
   abstract: A lesson for InfoGym, introducing the trie data structure and the Knuth–Morris–Pratt algorithm for string matching.
-  link: /paper/trie-kmp.pdf
-- title: The Aho–Corasick Algorithm
+- id: aho-corasick
+  title: The Aho–Corasick Algorithm
   icon: 🏝️
   abstract: A lesson for InfoGym, introducing the Aho–Corasick algorithm for string matching, starting from the concept of a deterministic finite automaton and from the KMP algorithm.
-  link: /paper/aho-corasick.pdf
-- title: Subsequence Problems
+- id: subsequences
+  title: Subsequence Problems
   icon: 📚
   abstract: A lesson for InfoGym, reviewing basic techniques for subsequence problems, such as prefix sums, difference arrays, “sliding window,” and “two pointers.”
   link: https://pastemd.vercel.app/pastes/HuenJYstyefmcAD7Yog4
-- title: Working With Strings in C++
+- id: strings-cpp
+  title: Working With Strings in C++
   icon: 🫧
   abstract: A lesson for InfoGym, covering the char type, the concept of pointers, C-style strings, and the std::string class in C++.
   link: https://pastemd.vercel.app/pastes/darte7fNLN6iI3ZDeNx8
-- title: Introduction to STL
+- id: stl
+  title: Introduction to STL
   icon: 🚀
   abstract: A lesson for InfoGym, providing an introduction to object-oriented programming and the STL library, with a focus on the std::vector class.
-  link: /paper/stl.pdf
-- title: Minesweeper in JavaScript Tutorial
+- id: minesweeper-js
+  title: Minesweeper in JavaScript Tutorial
   icon: 🧨
   abstract:
     A detailed tutorial on how to implement the Minesweeper game in Vanilla JavaScript.

@@ -1,20 +1,22 @@
 ---
+import type { CollectionEntry } from 'astro:content'
+
 import { slugify } from '~utils/slugs'
 
 type Props = {
-  name: string
+  data: CollectionEntry<'technologies'>
 }
 
-const { name } = Astro.props
+const { data } = Astro.props
 ---
 
 <article class="flex flex-col items-center gap-4 bg-gray-800 p-4">
   <div class="flex aspect-square h-16 items-center justify-center">
     <img
       class="max-h-full max-w-full"
-      src={`/technology/${slugify(name)}.svg`}
-      alt={name}
+      src={`/technology/${slugify(data.id)}.svg`}
+      alt={data.data.name}
     />
   </div>
-  <div class="font-bold">{name}</div>
+  <div class="font-bold">{data.data.name}</div>
 </article>
