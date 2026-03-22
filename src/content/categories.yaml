@@ -1,0 +1,8 @@
+- id: reflections
+  order: 1
+  name: Reflections
+  icon: 📰
+- id: coding
+  order: 2
+  name: Coding
+  icon: 🐍

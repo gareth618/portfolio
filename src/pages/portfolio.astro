@@ -8,9 +8,15 @@ import TechnologyCard from '~components/cards/TechnologyCard.astro'
 
 import BaseLayout from '~layouts/BaseLayout.astro'
 
-const technologies = await getCollection('technologies')
-const projects = await getCollection('projects')
-const papers = await getCollection('papers')
+const technologies = (await getCollection('technologies')).toSorted(
+  (technology1, technology2) => technology1.data.order - technology2.data.order,
+)
+const projects = (await getCollection('projects')).toSorted(
+  (project1, project2) => project1.data.order - project2.data.order,
+)
+const papers = (await getCollection('papers')).toSorted(
+  (paper1, paper2) => paper1.data.order - paper2.data.order,
+)
 ---
 
 <BaseLayout title="Portfolio">
