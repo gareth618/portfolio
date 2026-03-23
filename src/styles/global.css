@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
-pre::-webkit-scrollbar {
+:where(pre, div.scrollable)::-webkit-scrollbar {
   height: 0.5rem;
 }
 
-pre::-webkit-scrollbar-thumb {
+:where(pre, div.scrollable)::-webkit-scrollbar-thumb {
   background-color: #abb2bf;
 }

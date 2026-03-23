@@ -30,7 +30,9 @@ const { Content } = await render(await getEntry('pages', 'home')!)
     </div>
     <PhotoAtom client:visible />
   </div>
-  <div class="mt-20 max-w-4xl [&_img:not(.emoji):only-child]:max-h-72">
+  <div
+    class="mt-20 max-w-4xl [&_img:not(.emoji,.scrollable):only-child]:max-h-72"
+  >
     <MarkdownContainer>
       <Content components={{ h2: IconHeader }} />
     </MarkdownContainer>
