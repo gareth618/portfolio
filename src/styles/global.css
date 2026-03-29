@@ -1,9 +1,33 @@
 @import 'tailwindcss';
 
-:where(pre, div.scrollable)::-webkit-scrollbar {
+:root {
+  --code-fg: #abb2bf;
+  --code-bg: #282c34;
+}
+
+.emoji {
+  display: inline;
+  height: 1em;
+  margin-bottom: 0.15em;
+}
+
+:where(pre, .scrollbar-2)::-webkit-scrollbar {
+  width: 0.5rem;
   height: 0.5rem;
 }
 
-:where(pre, div.scrollable)::-webkit-scrollbar-thumb {
-  background-color: #abb2bf;
+:where(pre, .scrollbar-gray)::-webkit-scrollbar-thumb {
+  background-color: var(--code-fg);
+}
+
+:where(pre, .scrollbar-gray)::-webkit-scrollbar-corner {
+  background-color: var(--code-fg);
+}
+
+.scrollbar-transparent::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.scrollbar-transparent::-webkit-scrollbar-corner {
+  background-color: transparent;
 }

@@ -14,7 +14,7 @@ type Props = {
 const { slug, title, icon, date, abstract } = Astro.props
 ---
 
-<a class="group max-w-md bg-gray-700" href={`/post/${slug}/`}>
+<a class="group bg-gray-700" href={`/post/${slug}/`}>
   <div class="flex items-center gap-4 bg-gray-800 p-4 group-hover:bg-gray-700">
     <div class="aspect-square h-12" transition:name={`${slug}-icon`}>
       <EmojiIcon emoji={icon} />
