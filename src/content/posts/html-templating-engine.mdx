@@ -1,0 +1,366 @@
+---
+title: Writing Your Own HTML Templating Engine
+icon: 🦖
+date: 2026-04-06
+category: coding
+tags:
+  - html
+  - regex
+  - parsing
+abstract: Do you want to learn more about regular expressions and how parsers for markup languages work? Let’s build a custom HTML templating engine from scratch and find out!
+---
+
+import CodeBlockHeader from '../../components/general/CodeBlockHeader.astro'
+
+In the 2nd year of my BSc, for the Web Technologies class, we had to write a really complex web app from scratch, with no 3rd-party frameworks or even libraries.
+
+One of the few problems I started to run into, as the codebase was growing larger and larger, was the amount of repetitive HTML code, while the insertion of request-dependent values (and blocks of HTML, actually) was also turning into spaghetti code.
+
+## 🤔 Why Use a Templating Engine?
+
+Basically, I needed a proper way of filling out HTML templates with data. There were two options:
+
+1. Send both the HTML template and the data to the client, and let the client figure out the rest.
+2. Fill out the HTML template with data on the server and ship the final, already rendered HTML to the client.
+
+In terms of efficiency, since there were only a few, simple computations to be made, the second option was clearly the winner. But you weren't able to use any kind of library, so the developer experience factor had a bigger weight.
+
+The first option required no templating engine --- you could just write vanilla HTML and decorate it with as many `id`s as you needed, thus letting the client perform the required DOM mutations by searching for these `id`s. For the backend, this solution was simple enough, but for the frontend, definitely not. You would've had to make a bunch of `fetch` calls and custom DOM manipulations for each individual case. And this was even worsened by the fact that using React or anything alike was forbidden.
+
+Therefore, the first option sounded better, but a puzzle piece was missing --- the templating engine itself. So I had to build my own. And it wasn't that hard actually, especially because I was well-versed enough in working with regular expressions, due to some older [personal projects](https://github.com/gareth618/explicit-highlighter). Let's see how I did it!
+
+## 🎯 Engine Syntax
+
+I needed only three features:
+
+1. **JS expression interpolation.** Here I used the Vue moustache syntax:
+
+   ```xml
+   <tag>{{ ['Hello', 'World!'].join(' ') }}</tag>
+   ```
+
+2. **For-each loops.** Here I used a special tag with attributes similar to the JS `for`-`of` loop:
+
+   ```xml
+    <for const="i" of="[6, 1, 8]">
+      some HTML content
+    </for>
+   ```
+
+3. **Custom component definition and instances.** HTML-like syntax with auto-closing tags when instanciated (no children, for simplicity).
+
+   ```xml
+   <!-- definition -->
+   <component name="MyComponent">
+     some HTML content
+   </component>
+
+   <!-- instanciation -->
+   <MyComponent
+     prop1="value1"
+     prop2="value2"
+   />
+   ```
+
+   Note that no _a priori_ prop schema definition is necessary (or possible). For simplicity, of course.
+
+Moreover, through the regular expressions you'll see in a moment, I enforced some identifier rules. Namely, they can only contain latin letters and digits, and, with the exception of component names, which must start with an uppercase letter (`[A-Z][a-zA-Z0-9]*`), they all have to start with a lowercase letter (`[a-z][a-zA-Z0-9]*`).
+
+## 🌌 Passing Component Context
+
+The most concerning part of the engine is passing props from one component to another. The simplest solution I came up with is actually doing more than that --- passing a key-value `context` object to each component instance when it is rendered. It contains all the props available to the parent component, plus the props of the current one, plus the for-each iterators of the current scope.
+
+How to access these context variables in a JS expression? We need an easy convention to separate them from any other kind of identifiers. I chose to prefix them with a dollar sign:
+
+```xml
+<ul>
+  <for const="i" of="[6, 1, 8]">
+    <li>{{ $i }}</li>
+  </for>
+</ul>
+```
+
+## 🔌 Loading the Component Definitions
+
+Let's start writing the `Templater` class! It only needs one property --- the key-value object mapping component names to component definitions (HTML template strings):
+
+```js
+export default class Templater {
+  #components = {}
+}
+```
+
+It's a widely unknown feature, but the `#` prefix makes a property or method private.
+
+The templating engine will initially load all component definitions from the HTML files of a given directory:
+
+```js
+async load(dir) {
+  const files = await readdir(dir)
+  for (const file of files) {
+    const code = await readFile(`${dir}/${file}`, { encoding: 'utf8' })
+    const matches =
+      code.match(/<component name="[A-Z][a-zA-Z0-9]*">.*?<\/component>/gs) ??
+      []
+    for (const match of matches) {
+      const { name, content } = match.match(
+        /<component name="(?<name>[A-Z][a-zA-Z0-9]*)">(?<content>.*?)<\/component>/s,
+      ).groups
+      this.#components[name] = content
+    }
+  }
+}
+```
+
+No imports are needed, and multiple component definitions may live in the same file!
+
+The code globally (`g`), and treating the entire file as a single line of text (`s`), searches for all component definitions, and then processes each one individually, extracting its name and HTML content.
+
+Only two main regex concepts are needed from now on:
+
+- `.*?` --- Non-greedy matching (stopping the matching as soon as possible) of any character. We need it to stop the `content` matching after the _first_ enclosing `component` tag is found.
+- `(?<name>regex)` --- Capture group. Any sub-match of `regex` will be stored inside the `name` group.
+- `(?=regex)` --- Positive look-ahead. It is checked that `regex` is present immediately after the current match, but without appending it to that match.
+
+For any other unknown regex syntax, refer to the official [Cheat Sheet](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions/Cheatsheet).
+
+## 👓 Parsing JS Expressions
+
+We define a `#parseJS` method, taking as arguments the JS expression code and the current context. We use the `eval` function to evaluate the expression, but since it functions like pasting the given expression exactly where it is called, we need to replace the `$` prefixes with an actual context access (`_context.`):
+
+```js
+#parseJS(js, _context) {
+  return eval(js.replace(/\$(?=[a-z][a-zA-Z0-9]*)/g, '_context.'))
+}
+```
+
+## 🔄 Parsing the HTML Template
+
+Now we define a recursive `#parseHTML` method, which again takes as arguments the given (HTML) code and the current context. It needs to check for the first occurrence of the three features mentioned in the beginning. It appends the substring of HTML up to the first such occurrence, plus the result of parsing that occurrence:
+
+```js
+#parseHTML(html, context) {
+  while (true) {
+    const jsMatch = html.match(/{{ (?<expression>.+?) }}/s)
+    const forMatch = html.match(
+      /<for const="(?<iterator>[a-z][a-zA-Z0-9]*)" of="(?<array>[a-z][a-zA-Z0-9]*)">(?<content>.*?)<\/for>/s,
+    )
+    const componentMatch = html.match(
+      /<(?<name>[A-Z][a-zA-Z0-9]*)(?<props>(\s+[a-z][a-zA-Z0-9]*=".+?")*)\s*\/>/s,
+    )
+
+    const jsIndex = jsMatch?.index ?? Infinity
+    const forIndex = forMatch?.index ?? Infinity
+    const componentIndex = componentMatch?.index ?? Infinity
+    const firstIndex = Math.min(jsIndex, forIndex, componentIndex)
+
+    if (firstIndex === Infinity) {
+      return html
+    }
+
+    // TODO
+  }
+}
+```
+
+Parsing a JS expression is straight-forward:
+
+```js
+if (firstIndex === jsIndex) {
+  const js = jsMatch.groups.expression
+  html = html.replace(jsMatch[0], this.#parseJS(js, context))
+}
+```
+
+Moving on to the for-each case:
+
+```js
+if (firstIndex === forIndex) {
+  const iterator = forMatch.groups.iterator
+  const array = this.#parseJS(forMatch.groups.array, context)
+  const content = forMatch.groups.content
+  let forHTML = ''
+  for (const element of array) {
+    forHTML += this.#parseHTML(content, {
+      ...context,
+      [iterator]: element,
+    })
+  }
+  html = html.replace(forMatch[0], forHTML)
+}
+```
+
+The array has to be JS-parsed because it is indeed a JS expression, while the iterator is just an identifier, a string. The content of the `for` loop is the one imposing recursive calls on `#parseHTML`. One call for each array element.
+
+Each recursive call has to pass on a different context object, namely one that adds the new `iterator` variable alongside its current `element` value. Note that a real-world scenario would require a deep-copy of `context`, but we'll go with a shallow one, using the spread operator.
+
+Finally, the case of an inner component instance:
+
+```js
+if (firstIndex === componentIndex) {
+  const name = componentMatch.groups.name
+  const props = {}
+  const matches =
+    componentMatch.groups.props?.match(/[a-z][a-zA-Z0-9]*=".+?"/gs) ?? []
+  for (const match of matches) {
+    const { prop, value } = match.match(
+      /(?<prop>[a-z][a-zA-Z0-9]*)="(?<value>.+?)"/s,
+    ).groups
+    props[prop] = this.#parseJS(value, context)
+  }
+  html = html.replace(
+    componentMatch[0],
+    this.render(name, { ...context, ...props }),
+  )
+}
+```
+
+First, we construct a new object, containing only the props of the inner component. Then, when passing a new context to that component, we create a merge between it and the current `context`. Note that `this.render` is the entry-point of the `Templater` class, responsible for rendering just one component:
+
+```js
+render(component, context) {
+  return this.#parseHTML(this.#components[component], context)
+}
+```
+
+When calling it for the first time (i.e., for an entire page component), you can already provide it with some useful, globally-needed context data, like the username of the currently signed-in user.
+
+## 🚀 Final Result
+
+And there you have it! A toy HTML templating engine built from scratch in vanilla JS!
+
+<CodeBlockHeader title="templater.js" />
+
+```js
+import { readFile, readdir } from 'fs/promises'
+
+export default class Templater {
+  #components = {}
+
+  async load(dir) {
+    const files = await readdir(dir)
+    for (const file of files) {
+      const code = await readFile(`${dir}/${file}`, { encoding: 'utf8' })
+      const matches =
+        code.match(/<component name="[A-Z][a-zA-Z0-9]*">.*?<\/component>/gs) ??
+        []
+      for (const match of matches) {
+        const { name, content } = match.match(
+          /<component name="(?<name>[A-Z][a-zA-Z0-9]*)">(?<content>.*?)<\/component>/s,
+        ).groups
+        this.#components[name] = content
+      }
+    }
+  }
+
+  #parseJS(js, _context) {
+    return eval(js.replace(/\$(?=[a-z][a-zA-Z0-9]*)/g, '_context.'))
+  }
+
+  #parseHTML(html, context) {
+    while (true) {
+      const jsMatch = html.match(/{{ (?<expression>.+?) }}/s)
+      const forMatch = html.match(
+        /<for const="(?<iterator>[a-z][a-zA-Z0-9]*)" of="(?<array>[a-z][a-zA-Z0-9]*)">(?<content>.*?)<\/for>/s,
+      )
+      const componentMatch = html.match(
+        /<(?<name>[A-Z][a-zA-Z0-9]*)(?<props>(\s+[a-z][a-zA-Z0-9]*=".+?")*)\s*\/>/s,
+      )
+
+      const jsIndex = jsMatch?.index ?? Infinity
+      const forIndex = forMatch?.index ?? Infinity
+      const componentIndex = componentMatch?.index ?? Infinity
+      const firstIndex = Math.min(jsIndex, forIndex, componentIndex)
+
+      if (firstIndex === Infinity) {
+        return html
+      }
+
+      if (firstIndex === jsIndex) {
+        const js = jsMatch.groups.expression
+        html = html.replace(jsMatch[0], this.#parseJS(js, context))
+      }
+
+      if (firstIndex === forIndex) {
+        const iterator = forMatch.groups.iterator
+        const array = this.#parseJS(forMatch.groups.array, context)
+        const content = forMatch.groups.content
+        let forHTML = ''
+        for (const element of array) {
+          forHTML += this.#parseHTML(content, {
+            ...context,
+            [iterator]: element,
+          })
+        }
+        html = html.replace(forMatch[0], forHTML)
+      }
+
+      if (firstIndex === componentIndex) {
+        const name = componentMatch.groups.name
+        const props = {}
+        const matches =
+          componentMatch.groups.props?.match(/[a-z][a-zA-Z0-9]*=".+?"/gs) ?? []
+        for (const match of matches) {
+          const { prop, value } = match.match(
+            /(?<prop>[a-z][a-zA-Z0-9]*)="(?<value>.+?)"/s,
+          ).groups
+          props[prop] = this.#parseJS(value, context)
+        }
+        html = html.replace(
+          componentMatch[0],
+          this.render(name, { ...context, ...props }),
+        )
+      }
+    }
+  }
+
+  render(component, context) {
+    return this.#parseHTML(this.#components[component], context)
+  }
+}
+```
+
+Here are some usage examples:
+
+```xml
+<component name="Authorize">
+  <!DOCTYPE html>
+  <html>
+    <Head
+      title="'authorize ' + $platform"
+      scripts="['authorize-' + $platform]"
+    />
+    <body>
+      <h2>authorizing {{ $platform }} app…</h2>
+    </body>
+  </html>
+</component>
+```
+
+```xml
+<component name="SortMenu">
+  <div class="menu">
+    <for const="metric" of="$metrics.map((metric, index) => ({ name: metric, order: index === 0 ? 'desc' : 'asc' }))">
+      <button id="sort-by-{{ $metric.name }}" onclick="sortItemsBy('{{ $metric.name }}')" class="{{ $metric.order }}">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+        <span>{{ $metric.name }}</span>
+      </button>
+    </for>
+  </div>
+</component>
+```
+
+```xml
+<div class="form">
+  <for const="field" of="$fields">
+    <TextField
+      id="$field.id"
+      type="$field.type"
+      icon="$field.icon"
+    />
+  </for>
+  <RememberMe />
+</div>
+```
+
+Or you can check out the entire college project on [GitHub](https://github.com/gareth618/m-pic/tree/master).

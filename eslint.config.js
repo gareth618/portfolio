@@ -37,9 +37,16 @@ export default defineConfig([
   },
   {
     rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      'arrow-body-style': ['error', 'as-needed'],
       'prefer-const': 'error',
       'sort-imports': ['error', { allowSeparatedGroups: true }],
-      'arrow-body-style': ['error', 'as-needed'],
       'vue/no-v-html': 'off',
     },
   },
