@@ -1,0 +1,238 @@
+---
+title: Run Python in the Browser!
+icon: 🐍
+date: 2026-04-06
+category: coding
+tags:
+  - wasm
+  - python
+  - vue
+abstract: As a follow-up to my previous post on writing a code editor in Vue, let’s make it, this time, capable of running Python in the browser via WASM!
+---
+
+import CodeBlockHeader from '../../components/general/CodeBlockHeader.astro'
+import PythonEditor from '../../components/posts/PythonEditor.vue'
+
+As a follow-up to my [previous post](/post/vue-code-editor/) on writing a code editor in Vue, let’s make it, this time, capable of running Python in the browser via WASM!
+
+## 💠 Pyodide
+
+Letting the component structure and the implementation details aside, the core question is --- how can one run Python code client-side? We need a Python interpreter. In what language should it run? There are two options: either JavaScript or WASM (WebAssembly).
+
+> 👀 For those of you who don't know, WASM is the Assembly-like language built for the browser, thus running at near-native speed. However, unlike Assembly, WASM is portable, because it actually runs on a special kind of virtual machine, just like Java and C#.
+>
+> The main goal of WASM is letting you run, client-side, code written in other languages than JavaScript. And especially low-level languages, like C/C++. Their ecosystems already benefit of mature compilers targeting ASM, so patching them to actually generate WASM was relatively easy.
+>
+> Why running such low-level code in the browser? To improve the performance of very computationally-expensive interfaces, like the Figma editor. And to port already existing code, initially not built for the browser, as easily as possible.
+
+Returning to our problem, it seems there are WASM-interpreters for Python, such as [Pyodide](https://pyodide.org/), which is mainly a port of CPython (the official Python interpreter, written in C) for WASM. And remember --- C is a very WASM-friendly language. We'll go with Pyodide.
+
+```sh
+npm install pyodide
+```
+
+And consider adding this to the Vite config in order to prevent Vite from breaking:
+
+```json
+{
+  "optimizeDeps": {
+    "exclude": ["pyodide"]
+  }
+}
+```
+
+## 🧠 Component Core Logic
+
+For the sake of brevity, we'll just consider running a Python script that reads some input from `stdin` and prints some output to `stdout`.
+
+Thus, we need three main `ref`s, storing the source code, the input, and the output. We're going to use the Fibonacci code sample from the previous post and a default value of `10`, as placeholders. The expected result is $\mathit{fib}(10) = 55$.
+
+```ts
+const code = ref(
+  [
+    'n = int(input())',
+    't1 = 0',
+    't2 = 1',
+    'for i in range(n):',
+    '  t3 = t1 + t2',
+    '  t1 = t2',
+    '  t2 = t3',
+    'print(t1)',
+  ].join('\n'),
+)
+
+const input = ref('10')
+const output = ref('')
+```
+
+And there comes the HTML part, based on the `CodeEditor` component from the previous post and on two `textarea`s, the output one being disabled:
+
+```vue
+<template>
+  <div class="grid grid-cols-2 grid-rows-2 gap-4">
+    <CodeEditor
+      v-model="code"
+      language="python"
+      class="editor max-sm:col-span-2 sm:row-span-2"
+    />
+    <textarea v-model="input" name="python-input" />
+    <textarea name="python-output" :value="output" :disabled="true" />
+  </div>
+</template>
+
+<style scoped>
+textarea {
+  padding: 1rem;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--code-fg);
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  resize: none;
+  background-color: var(--code-bg);
+}
+
+@media (width < 640px) {
+  .editor {
+    margin-bottom: 0;
+  }
+}
+</style>
+```
+
+## 🔌 Adding Pyodide
+
+We need a Pyodide instance, and since one is loaded in an asynchronous fashion, we'll have to use a `ref` getting the value of `loadPyodide()` in an `async` function called on the component's mount:
+
+```ts
+const pyodide = ref<PyodideAPI | null>(null)
+
+onMounted(async () => {
+  pyodide.value = await loadPyodide()
+})
+```
+
+Note that using `pyodide.value` will require a `null`-check first.
+
+Now, we have to wait for changes on `input`, `code`, or even `pyodide` (which initially is `null`, until it gets fully loaded), to re-execute the Python code:
+
+```ts
+watch([input, code, pyodide], async ([newInput, newCode, newPyodide]) => {
+  if (newPyodide) {
+    // TODO
+  }
+}
+```
+
+What if executing the source code throws a Python error? We'll just catch it and print its message instead of the result:
+
+```ts
+try {
+  await newPyodide.runPythonAsync(newCode)
+} catch (error) {
+  output.value = error as string
+}
+```
+
+And the last thing we're going to do is handling the I/O streams. We can just re-configure them right before each execution. The input is passed as a zero-argument function returning a `string`, while the output is a function taking a new portion of text that Python wants to output, and appending it to what we currently have:
+
+```ts
+newPyodide.setStdin({ stdin: () => newInput })
+newPyodide.setStdout({ batched: text => (output.value += text) })
+output.value = ''
+await newPyodide.runPythonAsync(newCode)
+```
+
+Note that `output` must be re-initialized each time.
+
+## 🔥 Final Result
+
+<PythonEditor client:visible />
+
+<CodeBlockHeader title="PythonEditor.vue" />
+
+```vue
+<script setup lang="ts">
+import { type PyodideAPI, loadPyodide } from 'pyodide'
+import { onMounted, ref, watch } from 'vue'
+
+import CodeEditor from './CodeEditor.vue'
+
+const pyodide = ref<PyodideAPI | null>(null)
+
+onMounted(async () => {
+  pyodide.value = await loadPyodide()
+})
+
+const code = ref(
+  [
+    'n = int(input())',
+    't1 = 0',
+    't2 = 1',
+    'for i in range(n):',
+    '  t3 = t1 + t2',
+    '  t1 = t2',
+    '  t2 = t3',
+    'print(t1)',
+  ].join('\n'),
+)
+
+const input = ref('10')
+const output = ref('')
+
+watch([input, code, pyodide], async ([newInput, newCode, newPyodide]) => {
+  if (newPyodide) {
+    try {
+      newPyodide.setStdin({ stdin: () => newInput })
+      newPyodide.setStdout({ batched: text => (output.value += text) })
+      output.value = ''
+      await newPyodide.runPythonAsync(newCode)
+    } catch (error) {
+      output.value = error as string
+    }
+  }
+})
+</script>
+
+<template>
+  <p v-if="!pyodide">Loading Pyodide…</p>
+  <div v-else class="grid grid-cols-2 grid-rows-2 gap-4">
+    <CodeEditor
+      v-model="code"
+      language="python"
+      class="editor max-sm:col-span-2 sm:row-span-2"
+    />
+    <textarea v-model="input" name="python-input" />
+    <textarea name="python-output" :value="output" :disabled="true" />
+  </div>
+</template>
+
+<style scoped>
+textarea {
+  padding: 1rem;
+  overflow: auto;
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--code-fg);
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  resize: none;
+  background-color: var(--code-bg);
+}
+
+@media (width < 640px) {
+  .editor {
+    margin-bottom: 0;
+  }
+}
+</style>
+```
+
+## 🤔 But Why Python in the Browser?
+
+Well, what's one of the areas where Python really shines? Linear algebra, thanks to NumPy.
+
+During my 3rd year of BSc, for the [Numerical Analysis](https://github.com/gareth618/numerical-analysis) class, we had the possibility of implementing visual interfaces for each lab, in order to score some bonus points.
+
+Since, due to NumPy, the core logic was written in Python, it was very easy to just create a Nuxt app, fetch each Python file from the `public` directory, load NumPy (you can do that with just one line of code with Pyodide), and execute it in the browser. No backend needed!

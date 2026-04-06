@@ -12,6 +12,9 @@ export default defineConfig({
   integrations: [mdx(), vue()],
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      exclude: ['pyodide'],
+    },
   },
   markdown: {
     remarkPlugins: [remarkMath, linkPlugin, textPlugin],

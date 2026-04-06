@@ -1,7 +1,7 @@
 - id: coding
   order: 1
   name: Coding
-  icon: 🐍
+  icon: 💻
 - id: reflections
   order: 2
   name: Reflections
